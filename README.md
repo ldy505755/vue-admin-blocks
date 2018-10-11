@@ -132,7 +132,7 @@ export default(Mock, qs) => {
 }
 ```
 
-** \* 注意 **
+\* **注意**
 
 > -   添加临时菜单需要重新登录才能显示新菜单
 
@@ -172,7 +172,7 @@ const mock = () => {
 export default {mock}
 ```
 
-** \* 提示 **
+\* **提示**
 
 > -   如需使用 vuex 存储状态, 请阅读 views/common/partials/Sidebar.vue 组件和 store 目录源码
 
