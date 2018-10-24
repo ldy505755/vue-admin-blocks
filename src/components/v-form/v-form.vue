@@ -120,18 +120,20 @@ export default {
     }
   },
   mounted() {
-    let elem = this.elem
-    for (var i = 0; i < elem.length; i++) {
-      let width = elem[i].width
-      let elemWidth = elem[i].elemWidth
-      if (parseInt(width)) {
-        elem[i].width = {
-          width: `${width}px`
+    if (this.elem) {
+      let elem = this.elem
+      for (var i = 0; i < elem.length; i++) {
+        let width = elem[i].width
+        let elemWidth = elem[i].elemWidth
+        if (parseInt(width)) {
+          elem[i].width = {
+            width: `${width}px`
+          }
         }
-      }
-      if (parseInt(elemWidth)) {
-        elem[i].elemWidth = {
-          width: `${elemWidth}px`
+        if (parseInt(elemWidth)) {
+          elem[i].elemWidth = {
+            width: `${elemWidth}px`
+          }
         }
       }
     }
@@ -142,12 +144,16 @@ export default {
       this.$refs['form'].validateField(prop)
     },
     handleSubmit(name) {
-      // 对整个表单进行校验
-      this.$refs[name].validate(valid => {
-        if (valid) {
-          this.$emit('on-submit')
-        }
-      })
+      if (this.elem) {
+        // 对整个表单进行校验
+        this.$refs[name].validate(valid => {
+          if (valid) {
+            this.$emit('on-submit')
+          }
+        })
+      } else {
+        this.$emit('on-submit')
+      }
     },
     handleReset() {
       // 对整个表单进行重置
