@@ -57,7 +57,7 @@ export default {
       if (!this.title) {
         this.title = document.title
       }
-      document.title = `${config.env} ) ${this.title} | ${curTitle}`
+      document.title = config.env === 'production' ? `${this.title} | ${curTitle}` : `${config.env} ) ${this.title} | ${curTitle}`
     }
   }
 }
