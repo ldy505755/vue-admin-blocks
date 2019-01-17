@@ -31,8 +31,11 @@ export default {
   },
   methods: {
     handleBreadcrumb() {
-      const path = `/${this.$route.path.split('/')[1]}` // 主菜单路径
       const menu = JSON.parse(sessionStorage.getItem('menu')) // 获取菜单(主菜单和子菜单)
+      if (!menu) {
+        return false
+      }
+      const path = `/${this.$route.path.split('/')[1]}` // 主菜单路径
       const curMenu = menu.filter(name => name['path'] === path)[0] // 获取当前菜单(主菜单和子菜单)
       const childMenu = curMenu['children'] // 获取当前菜单(子菜单)
       const breadcrumb = []

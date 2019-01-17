@@ -11,12 +11,12 @@ const getters = {
 const mutations = {
   // 创建标签页
   NEW_TABS: (state, data) => {
+    const menu = JSON.parse(sessionStorage.getItem('menu')) // 获取菜单(主菜单和子菜单)
     // 判断展开标签页或首页
-    if (state.tabs.some(name => name['path'] === data) || data === '/') {
+    if (!menu || state.tabs.some(name => name['path'] === data) || data === '/') {
       return false
     }
     const path = `/${data.split('/')[1]}` // 主菜单路径
-    const menu = JSON.parse(sessionStorage.getItem('menu')) // 获取菜单(主菜单和子菜单)
     const childMenu = menu.filter(name => name['path'] === path)[0]['children'] // 获取子菜单
     let tab
     if (childMenu) {

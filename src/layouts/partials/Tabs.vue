@@ -5,7 +5,7 @@
     <TabPane v-for="item in tabs" :key="item['path']" :name="item['path']" :label="item['name']" closable></TabPane>
   </Tabs>
   <!-- Tabs -->
-  <Dropdown class="dropdown" placement="bottom-end" @on-click="handleTabRemove">
+  <Dropdown v-if="menu.length" class="dropdown" placement="bottom-end" @on-click="handleTabRemove">
     <Icon type="md-menu" size="16" style="cursor: pointer;"></Icon>
     <DropdownMenu slot="list">
       <DropdownItem v-for="item in dropdown" :key="item.name" :name="item.name">

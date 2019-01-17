@@ -121,6 +121,8 @@ export default {
           this.$store.commit('LOADING', false)
           // 获取用户信息
           sessionStorage.setItem('user', JSON.stringify(res.data))
+          // 路由跳转首页
+          this.$router.push('/')
           // 获取菜单列表
           this.$store.dispatch('handleMenu')
         }).catch(() => {

@@ -87,6 +87,7 @@ export default {
             cancelText: 'Cancel',
             onOk: () => {
               this.$store.commit('MENU_RESET') // 重置菜单
+              this.$store.commit('TABS_RESET') // 重置标签页
             }
           })
       }
