@@ -1,16 +1,12 @@
-import Mock from 'mockjs'
-import qs from 'qs'
 import app from './app'
 import users from './users'
 import test from './test'
 
-const mock = () => {
+export default () => {
   // 登录，菜单，改密
-  app(Mock, qs)
+  app()
   // 用户管理
-  users(Mock, qs)
+  users()
   // 测试
-  test(Mock, qs)
+  test()
 }
-
-export default {mock}

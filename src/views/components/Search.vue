@@ -1,25 +1,19 @@
 <template>
 <div id="search">
-  <div class="head">
-    <div class="title">
-      <Icon type="md-search" size="16" style="margin-top: -2px;"></Icon> Search
-    </div>
-    <!-- .title -->
-  </div>
-  <!-- .head -->
-  <div class="body">
-    <VForm inline :label-width="labelWidth" :elem="elem" :model="model" :loading="loading" :btn-loading="btnLoading" @on-submit="handleSearch" @on-reset="handleSearch" :btn-label-width="4" reset submit-text="Search" ok-icon="md-search"></VForm>
-    <!-- VForm -->
-  </div>
-  <!-- .body -->
+  <IForm inline :model="model" :elem="elem" :loading="loading" :btn-loading="btnLoading" :label-width="labelWidth" @on-submit="handleSearch" @on-reset="handleSearch" :btn-label-width="4" reset submit-text="Search" ok-icon="md-search" btn-icon="md-refresh">
+    <slot slot="head" name="head"> </slot>
+    <slot> </slot>
+    <slot slot="button" name="button"> </slot>
+  </IForm>
+  <!-- IForm -->
 </div>
 </template>
 <script>
 export default {
   name: 'Search',
   props: {
-    elem: Array,
     model: Object,
+    elem: Array,
     loading: Boolean,
     btnLoading: Boolean,
     labelWidth: Number
@@ -34,19 +28,8 @@ export default {
   }
 }
 </script>
-<style lang="postcss" scoped>
-.head {
-  position: relative;
-  border: 1px solid #dcdee2;
-  border-bottom-style: none;
-  font-size: 14px;
-  & .title {
-    padding: 12px 16px;
-  }
-}
-.body {
+<style lang="postcss">
+#search .ivu-form-item {
   margin-bottom: 16px;
-  padding: 12px 16px 0;
-  border: 1px solid #dcdee2;
 }
 </style>

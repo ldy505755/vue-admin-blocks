@@ -1,11 +1,11 @@
 // 自定义组件
-import IForm from './IForm'
-import ITable from './ITable'
+import Content from './Content'
+import Search from './Search'
 
 export default Vue => {
   const components = {
-    IForm,
-    ITable
+    Content,
+    Search
   }
   for (const key of Object.keys(components)) {
     Vue.component(key, components[key])

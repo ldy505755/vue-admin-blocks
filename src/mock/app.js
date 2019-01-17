@@ -1,7 +1,13 @@
-export default(Mock, qs) => {
+import Mock from 'mockjs'
+import qs from 'qs'
+
+export default () => {
   // 用户登录
   Mock.mock(/\/login/, config => {
-    let {user, pwd} = qs.parse(config.body)
+    const {
+      user,
+      pwd
+    } = qs.parse(config.body)
     if (user === 'admin' && pwd === 'wasd@007') {
       return {
         data: {
@@ -25,33 +31,33 @@ export default(Mock, qs) => {
 
   // 菜单获取
   Mock.mock(/\/menu/, {
-    data: [
-      {
-        name: 'Dashboard',
-        path: '/'
-      }, {
-        name: 'Test',
-        path: '/test'
-      }, {
-        name: 'Hello',
-        path: '/hello',
-        children: [
-          {
-            name: 'HelloWorld',
-            path: '/hello/hello-world'
-          }
-        ]
-      }, {
-        name: 'Manage',
-        path: '/manage',
-        children: [
-          {
-            name: 'Users',
-            path: '/manage/users'
-          }
-        ]
-      }
-    ],
+    data: [{
+      path: '/',
+      name: 'Dashboard',
+      icon: 'md-speedometer'
+    }, {
+      path: '/test',
+      name: 'Test',
+      icon: 'md-document'
+    }, {
+      path: '/hello',
+      name: 'Hello',
+      icon: 'md-chatbubbles',
+      children: [{
+        path: '/hello/hello-world',
+        name: 'HelloWorld',
+        icon: 'md-text'
+      }]
+    }, {
+      path: '/manage',
+      name: 'Manage',
+      icon: 'md-folder-open',
+      children: [{
+        path: '/manage/users',
+        name: 'Users',
+        icon: 'md-person'
+      }]
+    }],
     error: {
       code: 0,
       msg: 'Get menu success'
@@ -60,8 +66,10 @@ export default(Mock, qs) => {
 
   // 密码修改
   Mock.mock(/\/edit-password/, config => {
-    let {oldPwd} = qs.parse(config.body)
-    if (oldPwd === 'wasd@007') {
+    const {
+      currentPassword
+    } = qs.parse(config.body)
+    if (currentPassword === 'wasd@007') {
       return {
         error: {
           code: 0,

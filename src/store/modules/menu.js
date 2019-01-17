@@ -1,5 +1,7 @@
 import router from '@/router'
-import {getMenuList} from '@/services/app'
+import {
+  getMenuList
+} from '@/services/app'
 
 const state = {
   menu: JSON.parse(sessionStorage.getItem('menu')) || [], // 主菜单
@@ -39,7 +41,9 @@ const mutations = {
 
 const actions = {
   // 获取菜单
-  handleMenu: ({commit}) => {
+  handleMenu: ({
+    commit
+  }) => {
     getMenuList().then(res => {
       commit('MENU', res.data)
       commit('MENU_SELECT', '/')
@@ -53,4 +57,9 @@ const actions = {
   // }
 }
 
-export default {state, getters, mutations, actions}
+export default {
+  state,
+  getters,
+  mutations,
+  actions
+}

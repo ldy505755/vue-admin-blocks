@@ -1,4 +1,4 @@
-import ax from '@/config/axios'
+import ax from '@/utils/axios'
 
 export const login = params => ax.post('/login', params) // 用户登录
 export const getMenuList = () => ax.get('/menu') // 获取菜单

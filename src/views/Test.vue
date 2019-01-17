@@ -1,8 +1,8 @@
 <template>
-<div id="test">
+<Content id="test">
   <Spin v-if="loading" size="large" fix></Spin>
-  <h2 v-else>This is a {{ title }}</h2>
-</div>
+  <h2>This is a {{ title }}</h2>
+</Content>
 </template>
 <script>
 import {
@@ -15,15 +15,18 @@ export default {
     loading: false
   }),
   mounted() {
+    this.$Loading.start()
     this.loading = true
     // 模拟异步请求
     setTimeout(() => {
       test().then(res => {
+        this.$Loading.finish()
         this.loading = false
         this.title = res.data
       }).catch(err => {
+        this.$Loading.error()
         this.loading = false
-        console.log(err)
+        console.error(err)
       })
     }, 500)
   }
@@ -31,9 +34,12 @@ export default {
 </script>
 <style lang="postcss" scoped>
 /* 样式使用 cssnext 预处理 */
+:root {
+  --bdColor: #ccc;
+}
 #test {
   & h2 {
-    border-left: 2px solid #CCC;
+    border-left: 4px solid var(--bdColor);
     padding-left: 12px;
   }
 }

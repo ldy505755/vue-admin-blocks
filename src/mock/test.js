@@ -1,4 +1,6 @@
-export default(Mock, qs) => {
+import Mock from 'mockjs'
+
+export default () => {
   // 测试数据
   Mock.mock(/\/test/, () => ({
     data: 'test page',
