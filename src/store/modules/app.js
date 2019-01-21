@@ -1,12 +1,15 @@
 import qs from 'qs'
+import router from '@/router'
 
 const state = {
   loading: false, // 加载状态
+  userInfo: JSON.parse(sessionStorage.getItem('userInfo')) || '', // 用户信息
   resError: '' // 错误数据
 }
 
 const getters = {
   getLoading: state => state.loading,
+  getUserInfo: state => state.userInfo,
   getResError: state => state.resError
 }
 
@@ -14,6 +17,12 @@ const mutations = {
   // 更新加载状态
   LOADING: (state, data) => {
     state.loading = data
+  },
+  // 更新用户信息
+  USER_INFO: (state, data) => {
+    router.push('/') // 路由跳转首页
+    state.userInfo = data
+    sessionStorage.setItem('userInfo', JSON.stringify(data))
   },
   // 更新错误数据
   RES_ERROR: (state, data) => {

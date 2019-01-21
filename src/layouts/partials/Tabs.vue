@@ -25,11 +25,11 @@ export default {
   data: () => ({
     // 下拉菜单元素数组
     dropdown: [{
-      label: '关闭其它标签',
+      label: 'Close Other Tabs',
       name: 'closeOtherTabs',
       icon: 'md-close'
     }, {
-      label: '关闭所有标签',
+      label: 'Close All Tabs',
       name: 'closeAllTabs',
       icon: 'md-close-circle'
     }]

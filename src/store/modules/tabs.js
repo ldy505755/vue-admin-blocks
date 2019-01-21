@@ -1,5 +1,3 @@
-import routes from '@/router/routes'
-
 const state = {
   tabs: JSON.parse(sessionStorage.getItem('tabs')) || [] // 标签页
 }
@@ -46,10 +44,11 @@ const mutations = {
         // 关闭当前标签页
         state.tabs = state.tabs.filter(name => name['path'] !== data)
     }
+    // 更新当前标签页
     sessionStorage.setItem('tabs', JSON.stringify(state.tabs))
   },
   // 重置标签页
-  TABS_RESET: (state) => {
+  TABS_RESET: state => {
     state.tabs = []
   }
 }

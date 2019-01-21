@@ -12,6 +12,8 @@
         <Option v-for="(opt, index) in item.option" :key="index" :value="opt.value" :disabled="opt.disabled">{{ opt.label }}</Option>
       </Select>
       <!-- 选择器 -->
+      <Cascader v-if="item.element === 'cascader'" :data="item.data" v-model="model[item.prop]" />
+      <!-- 级联选择 -->
       <DatePicker v-if="item.element === 'date'" :type="item.type" v-model="model[item.prop]" :options="item.options" :format="item.format" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :style="item.elemWidth" />
       <!-- 日期选择器 -->
       <TimePicker v-if="item.element === 'time'" :type="item.type" v-model="model[item.prop]" :format="item.format" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :style="item.elemWidth" />

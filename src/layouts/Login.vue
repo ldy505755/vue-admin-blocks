@@ -119,12 +119,17 @@ export default {
         login(this.login).then(res => {
           this.$Loading.finish()
           this.$store.commit('LOADING', false)
-          // 获取用户信息
-          sessionStorage.setItem('user', JSON.stringify(res.data))
-          // 路由跳转首页
-          this.$router.push('/')
-          // 获取菜单列表
-          this.$store.dispatch('handleMenu')
+          const userInfo = res.data
+          if (userInfo) {
+            // 设置页面 title 元素内容
+            sessionStorage.setItem('title', document.title)
+            // 获取用户信息
+            this.$store.commit('USER_INFO', userInfo)
+            // 获取菜单列表
+            this.$store.dispatch('handleMenu')
+          } else {
+            this.$Message.error('The user information is empty')
+          }
         }).catch(() => {
           this.$Loading.error()
           this.$store.commit('LOADING', false)

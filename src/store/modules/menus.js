@@ -30,8 +30,7 @@ const mutations = {
     sessionStorage.setItem('menuOpened', state.menuOpened)
   },
   // 重置菜单
-  MENU_RESET: (state) => {
-    router.push('/login') // 路由跳转
+  MENU_RESET: state => {
     state.menu = []
     state.menuActive = '/'
     state.menuOpened = ''
