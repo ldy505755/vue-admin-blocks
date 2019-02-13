@@ -109,7 +109,10 @@ export default [{
   children: [{
     path: '/test', // 路由地址
     name: 'Test', // 组件名称
-    component: () => import('@/views/Test') // 测试组件（路由懒加载）
+    component: () => import('@/views/Test'), // 测试组件（路由懒加载）
+    meta: {
+      keepAlive: true // 需要被缓存的组件
+    }
   }]
 }]
 ```

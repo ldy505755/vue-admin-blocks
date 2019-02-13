@@ -15,7 +15,10 @@
         <IBreadcrumb />
         <!-- #IBreadcrumb -->
         <transition name="fade-transform" mode="out-in">
-          <router-view />
+          <keep-alive v-if="$route.meta.keepAlive">
+            <router-view />
+          </keep-alive>
+          <router-view v-else />
         </transition>
       </div>
       <!-- #main -->

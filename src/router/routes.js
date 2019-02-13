@@ -11,19 +11,31 @@ export default [{
   children: [{
     path: '/',
     name: 'Dashboard',
-    component: () => import('@/views/dashboard')
+    component: () => import('@/views/dashboard'),
+    meta: {
+      keepAlive: true
+    }
   }, {
     path: '/test',
     name: 'Test',
-    component: () => import('@/views/Test')
+    component: () => import('@/views/Test'),
+    meta: {
+      keepAlive: true
+    }
   }, {
     path: '/hello/hello-world',
     name: 'HelloWorld',
-    component: () => import('@/views/hello/helloWorld')
+    component: () => import('@/views/hello/helloWorld'),
+    meta: {
+      keepAlive: true
+    }
   }, {
     path: '/manage/users',
     name: 'Users',
-    component: () => import('@/views/manage/users')
+    component: () => import('@/views/manage/users'),
+    meta: {
+      keepAlive: true
+    }
   }]
 }, {
   path: '*',

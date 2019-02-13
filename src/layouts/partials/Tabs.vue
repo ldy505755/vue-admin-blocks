@@ -76,6 +76,7 @@ export default {
         this.handleTabClick(nextPath || path) // 切换标签页
       }
       this.$store.commit('CLOSE_TABS', name) // 关闭标签页
+      this.$route.meta.keepAlive = false // 设置非缓存组件
     }
   }
 }

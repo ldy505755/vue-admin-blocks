@@ -48,6 +48,7 @@ export default {
     handleMenuSelect(name) {
       this.$emit('on-click', false) // 关闭导航
       this.$store.commit('MENU_SELECT', name) // 选择菜单
+      this.$route.meta.keepAlive = true // 设置缓存组件
     }
   }
 }
