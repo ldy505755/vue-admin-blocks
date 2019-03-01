@@ -1,31 +1,29 @@
 <template>
-<div id="users">
-  <Content>
-    <div slot="search">
-      <Search :model="search" :elem="searchElem" :btn-loading="list.loading" @on-search="handleDataList" />
-    </div>
-    <!-- Search -->
-    <div slot="extra">
-      <Button @click="handleCreate" icon="md-document">Create</Button>
-    </div>
-    <!-- extra -->
-    <div v-if="toolbar.number" class="toolbar">
-      <span class="number">Selected {{ toolbar.number }} items</span>
-      <Button type="error" @click="handleBatchDelete" :disabled="!toolbar.number" icon="md-trash">Remove</Button>
-    </div>
-    <!-- .toolbar -->
-    <ITable ref="list" stripe :columns="columns" :loading="list.loading" :data="list.data" :total="list.total" @on-page-change="handleDataList" @on-selection-change="handleSelectionChange" />
-    <!-- ITable -->
-    <UserEdit ref="edit" :model="edit" @on-update="handleDataList" />
-    <!-- UserEdit -->
-  </Content>
-</div>
+<Content id="users">
+  <div slot="search">
+    <Search :model="search" :elem="searchElem" :btn-loading="list.loading" @on-search="handleDataList" />
+  </div>
+  <!-- Search -->
+  <div slot="extra">
+    <Button icon="md-add" @click="handleCreate"> Create </Button>
+  </div>
+  <!-- extra -->
+  <div v-if="toolbar.number" class="toolbar">
+    <span class="number"> Selected {{ toolbar.number }} items </span>
+    <Button type="error" icon="md-trash" @click="handleBatchRemove"> Remove </Button>
+  </div>
+  <!-- .toolbar -->
+  <ITable ref="list" stripe :columns="columns" :loading="list.loading" :data="list.data" :total="list.total" @on-page-change="handleDataList" @on-selection-change="handleSelectionChange" />
+  <!-- ITable -->
+  <UserEdit ref="edit" @on-update="handleDataList" />
+  <!-- UserEdit -->
+</Content>
 </template>
 <script>
 import {
-  batchDelUser,
-  delUser,
-  getUserList
+  batchDelUser, // 批量删除
+  delUser, // 删除
+  getUserList // 列表
 } from '@/services/manage/users'
 import UserEdit from './UserEdit'
 export default {
@@ -40,20 +38,7 @@ export default {
         ids: [], // ID数组
         number: 0 // 选择数量
       },
-      // 表单数据(用户)
-      edit: {
-        name: '',
-        age: '',
-        gender: '',
-        email: '',
-        city: '',
-        hobby: [],
-        birth: '',
-        desc: ''
-      },
-      // 初始表单数据(用户)
-      init: '',
-      // 表单数据(搜索)
+      // 表单数据
       search: {
         name: ''
       },
@@ -63,14 +48,14 @@ export default {
         total: 0, // 数据总数
         loading: false // 加载状态
       },
-      // 表单元素(搜索)
+      // 表单元素
       searchElem: [{
         // label: 'Name',
         prop: 'name',
         placeholder: 'Search Name',
         icon: 'md-search'
       }],
-      // 表格列的配置描述(用户)
+      // 表格列的配置描述
       columns: [{
         type: 'selection',
         width: 60,
@@ -152,83 +137,29 @@ export default {
               'cancel-text': 'no'
             },
             on: {
-              'on-ok': () => this.handleDelete(params.row)
+              'on-ok': () => this.handleRemove(params.row)
             }
-          }, [
-            h('a', [h('Icon', {
-              props: {
-                type: 'md-trash',
-                size: 16
-              },
-              style: {
-                marginTop: '-2px',
-                marginRight: '4px'
-              }
-            }), 'Delete'])
-          ])
+          }, [h('a', [h('Icon', {
+            props: {
+              type: 'md-trash',
+              size: 16
+            },
+            style: {
+              marginTop: '-2px',
+              marginRight: '4px'
+            }
+          }), 'Delete'])])
         ])
       }]
     }
   },
   mounted() {
-    this.init = Object.assign({}, this.edit) // 复制初始表单数据
     this.handleDataList() // 获取列表数据
   },
   methods: {
     /**
-     * 在多选模式下有效，只要选中项发生变化时就会触发
-     * @param  {array} selection 已选项数据
-     */
-    handleSelectionChange(selection) {
-      const ids = []
-      for (const item of selection) {
-        ids.push(item['id'])
-      }
-      this.toolbar = {
-        ids: ids,
-        number: selection.length
-      }
-    },
-    // 批量删除用户
-    handleBatchDelete() {
-      this.$Loading.start()
-      this.list.loading = true
-      // 模拟异步请求(批量删除)
-      setTimeout(() => {
-        batchDelUser({
-          ids: this.toolbar.ids.join(',')
-        }).then(res => {
-          this.$Message.success(res.error.msg)
-          this.handleDataList()
-        }).catch(() => {
-          this.$Loading.error()
-          this.list.loading = false
-        })
-      }, 500)
-    },
-    /**
-     * 删除用户
-     * @param  {object} row 当前行数据
-     */
-    handleDelete(row) {
-      this.$Loading.start()
-      this.list.loading = true
-      // 模拟异步请求(删除)
-      setTimeout(() => {
-        delUser({
-          id: row.id
-        }).then(res => {
-          this.$Message.success(res.error.msg)
-          this.handleDataList()
-        }).catch(() => {
-          this.$Loading.error()
-          this.list.loading = false
-        })
-      }, 500)
-    },
-    /**
      * 获取用户列表
-     * @param  {string} type 是否使用搜索, 默认值 undefined
+     * @param  {string} type 是否使用搜索, 默认值 undefined (不使用搜索)
      */
     handleDataList(type) {
       this.$refs['list'].selectAll(false) // 取消全选
@@ -260,38 +191,67 @@ export default {
         })
       }, 500)
     },
+    // 新增界面
+    handleCreate() {
+      this.$refs['edit'].handleModal('Create') // 显示创建模态框
+    },
     /**
      * 编辑界面
      * @param  {object} row 当前行数据
      */
     handleEdit(row) {
-      this.$refs['edit'].handleModal(1) // 显示模态框
-      // 模拟异步请求(获取详情)
-      setTimeout(() => {
-        const edit = Object.assign({}, row)
-        const birth = row.birth ? this.$Utils.formatDate.parse(row.birth, 'yyyy-MM-dd') : ''
-        let city
-        for (const key of Object.keys(row.city)) {
-          city = key
-        }
-        const hobby = []
-        for (const key of Object.keys(row.hobby)) {
-          hobby.push(key)
-        }
-        this.edit = {
-          ...edit,
-          city,
-          birth,
-          hobby
-        }
-        this.$refs['edit'].handlePatch() // 获取补丁数据
-      }, 800)
+      this.$refs['edit'].handleModal('Edit', row) // 显示编辑模态框
     },
-    // 新增界面
-    handleCreate() {
-      this.$refs['edit'].handleModal() // 显示模态框
-      this.edit = Object.assign({}, this.init)
-      this.$refs['edit'].handlePatch() // 获取补丁数据
+    /**
+     * 删除用户
+     * @param  {object} row 当前行数据
+     */
+    handleRemove(row) {
+      this.$Loading.start()
+      this.list.loading = true
+      // 模拟异步请求(删除)
+      setTimeout(() => {
+        delUser({
+          id: row.id
+        }).then(res => {
+          this.$Message.success(res.error.msg)
+          this.handleDataList()
+        }).catch(() => {
+          this.$Loading.error()
+          this.list.loading = false
+        })
+      }, 500)
+    },
+    /**
+     * 在多选模式下有效，只要选中项发生变化时就会触发
+     * @param  {array} selection 已选项数据
+     */
+    handleSelectionChange(selection) {
+      const ids = []
+      for (const item of selection) {
+        ids.push(item['id'])
+      }
+      this.toolbar = {
+        ids: ids,
+        number: selection.length
+      }
+    },
+    // 批量删除用户
+    handleBatchRemove() {
+      this.$Loading.start()
+      this.list.loading = true
+      // 模拟异步请求(批量删除)
+      setTimeout(() => {
+        batchDelUser({
+          ids: this.toolbar.ids.join(',')
+        }).then(res => {
+          this.$Message.success(res.error.msg)
+          this.handleDataList()
+        }).catch(() => {
+          this.$Loading.error()
+          this.list.loading = false
+        })
+      }, 500)
     }
   }
 }

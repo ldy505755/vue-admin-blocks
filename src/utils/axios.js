@@ -40,10 +40,10 @@ ax.interceptors.response.use(response => {
     code,
     msg
   } = data['error']
-  const AUTH_TOKEN = data['data']['auth_token'] // 获取用户 AUTH_TOKEN
-  if (AUTH_TOKEN) {
-    setAuthToken(AUTH_TOKEN) // 配置默认参数
-  }
+  // const AUTH_TOKEN = data['data']['auth_token'] // 获取用户 AUTH_TOKEN
+  // if (AUTH_TOKEN) {
+  //   setAuthToken(AUTH_TOKEN) // 配置默认参数
+  // }
   // 用户 TOKEN 失效
   if (code === 3000) {
     store.commit('MENU_RESET') // 重置菜单

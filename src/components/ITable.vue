@@ -1,9 +1,9 @@
 <template>
-<div id="i-table">
+<div class="i-table">
   <Table ref="table" :border="border" :stripe="stripe" :row-class-name="rowClassName" :loading="loading" :columns="columns" :data="data" @on-selection-change="handleSelectionChange" />
   <!-- Table -->
   <slot> </slot>
-  <Page v-if="total > 10" id="page" show-elevator show-total show-sizer placement="top" :total="total" :current="current" :page-size="pageSize" @on-change="handlePageChange" @on-page-size-change="handlePageSizeChange" />
+  <Page v-if="total > 10" class="page" show-elevator show-total show-sizer placement="top" :total="total" :current="current" :page-size="pageSize" @on-change="handlePageChange" @on-page-size-change="handlePageSizeChange" />
   <!-- Page -->
 </div>
 </template>
@@ -60,7 +60,7 @@ export default {
 }
 </script>
 <style lang="postcss" scoped>
-#page {
+.i-table .page {
   margin-top: 16px;
 }
 </style>
