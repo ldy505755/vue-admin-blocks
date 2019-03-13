@@ -21,9 +21,9 @@
 </template>
 <script>
 import {
-  batchDelUser, // 批量删除
-  delUser, // 删除
-  getUserList // 列表
+  _batchDelUser, // 批量删除
+  _delUser, // 删除
+  _getUserList // 列表
 } from '@/services/manage/users'
 import UserEdit from './UserEdit'
 export default {
@@ -168,7 +168,7 @@ export default {
       const page = this.$refs['list'].handlePage(type) // 获取分页信息
       // 模拟异步请求(搜索)
       setTimeout(() => {
-        getUserList({
+        _getUserList({
           ...this.search,
           pagePara: {
             current: page.current,
@@ -211,7 +211,7 @@ export default {
       this.list.loading = true
       // 模拟异步请求(删除)
       setTimeout(() => {
-        delUser({
+        _delUser({
           id: row.id
         }).then(res => {
           this.$Message.success(res.error.msg)
@@ -242,7 +242,7 @@ export default {
       this.list.loading = true
       // 模拟异步请求(批量删除)
       setTimeout(() => {
-        batchDelUser({
+        _batchDelUser({
           ids: this.toolbar.ids.join(',')
         }).then(res => {
           this.$Message.success(res.error.msg)

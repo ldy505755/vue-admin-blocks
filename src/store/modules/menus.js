@@ -1,12 +1,14 @@
 import router from '@/router'
+import utils from '@/utils'
 import {
-  getMenuList
+  _getMenuList
 } from '@/services/app'
 
 const state = {
   menu: JSON.parse(sessionStorage.getItem('menu')) || [], // 主菜单
   menuActive: sessionStorage.getItem('menuActive') || '/', // 激活主菜单
-  menuOpened: sessionStorage.getItem('menuOpened') || '' // 展开子菜单
+  menuOpened: sessionStorage.getItem('menuOpened') || '', // 展开子菜单
+  routes: sessionStorage.getItem('menu') ? false : true // 动态路由添加状态
 }
 
 const getters = {
@@ -18,6 +20,15 @@ const getters = {
 const mutations = {
   // 获取菜单
   MENU: (state, data) => {
+    // 刷新页面更新动态路由
+    if (state.routes) {
+      // 获取动态路由
+      const routes = utils.getRoutes(data)
+      // 添加动态路由
+      router.addRoutes(routes)
+      state.routes = false
+    }
+
     state.menu = data // 获取菜单
     sessionStorage.setItem('menu', JSON.stringify(data))
   },
@@ -43,7 +54,7 @@ const actions = {
   handleMenu: ({
     commit
   }) => {
-    getMenuList().then(res => {
+    _getMenuList().then(res => {
       commit('MENU', res.data)
       commit('MENU_SELECT', '/')
     })

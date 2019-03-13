@@ -8,7 +8,7 @@
 </template>
 <script>
 import {
-  editUser // 创建编辑
+  _editUser // 创建编辑
 } from '@/services/manage/users'
 export default {
   name: 'UserEdit',
@@ -281,7 +281,7 @@ export default {
       payload.birth = this.$Utils.formatDate.format(new Date(payload.birth), 'yyyy-MM-dd')
       // 模拟异步请求(编辑 Or 新增)
       setTimeout(() => {
-        editUser(payload).then(res => {
+        _editUser(payload).then(res => {
           this.$Message.success(res.error.msg)
           this.$emit('on-update')
           this.$Loading.finish()

@@ -6,7 +6,7 @@
 </template>
 <script>
 import {
-  test
+  _test
 } from '@/services/test'
 export default {
   name: 'Test',
@@ -19,7 +19,7 @@ export default {
     this.loading = true
     // 模拟异步请求
     setTimeout(() => {
-      test().then(res => {
+      _test().then(res => {
         this.$Loading.finish()
         this.loading = false
         this.title = res.data

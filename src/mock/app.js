@@ -34,11 +34,15 @@ export default () => {
     data: [{
       path: '/',
       name: 'Dashboard',
-      icon: 'md-speedometer'
+      icon: 'md-speedometer',
+      compName: 'Dashboard',
+      compPath: '/dashboard'
     }, {
       path: '/test',
       name: 'Test',
-      icon: 'md-document'
+      icon: 'md-document',
+      compName: 'Test',
+      compPath: '/Test'
     }, {
       path: '/hello',
       name: 'Hello',
@@ -46,7 +50,9 @@ export default () => {
       children: [{
         path: '/hello/hello-world',
         name: 'HelloWorld',
-        icon: 'md-text'
+        icon: 'md-text',
+        compName: 'HelloWorld',
+        compPath: '/hello/helloWorld'
       }]
     }, {
       path: '/manage',
@@ -55,7 +61,9 @@ export default () => {
       children: [{
         path: '/manage/users',
         name: 'Users',
-        icon: 'md-person'
+        icon: 'md-person',
+        compName: 'Users',
+        compPath: '/manage/users'
       }]
     }],
     error: {

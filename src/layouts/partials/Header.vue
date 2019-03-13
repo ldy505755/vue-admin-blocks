@@ -1,21 +1,25 @@
 <template>
 <div id="header">
   <Row>
-    <Col :xs="0" :sm="0" :md="6">
+    <Col :xs="0" :sm="0" :md="6" :lg="4">
     <div class="logo-info">
       <img class="logo" src="@/assets/logo.png" alt="logo">
       <p class="name">企业级中后台集成方案 <br> <span class="sub">基于 Vue.js 的开源集成方案</span></p>
     </div>
     <!-- .logo-info -->
     </Col>
-    <Col :xs="6" :sm="12" :md="0">
+    <Col :xs="4" :sm="2" :md="0" :lg="0">
     <Poptip class="navigation" placement="right-start" v-model="visible">
       <Icon class="nav-icon" type="md-menu" size="32" />
       <Sidebar slot="content" @on-click="handleClose" />
     </Poptip>
     <!-- .navigation -->
     </Col>
-    <Col :xs="18" :sm="12" :md="18">
+    <Col :xs="10" :sm="11" :md="9" :lg="10">
+    <IBreadcrumb />
+    <!-- #IBreadcrumb -->
+    </Col>
+    <Col :xs="10" :sm="11" :md="9" :lg="10">
     <div class="login-info">
       <Dropdown placement="bottom-end" @on-click="handleDropdown">
         <strong class="user">
@@ -39,11 +43,13 @@
 <script>
 import EditPassword from '@/layouts/pages/EditPassword'
 import Sidebar from '@/layouts/partials/Sidebar'
+import IBreadcrumb from '@/layouts/partials/Breadcrumb'
 export default {
   name: 'IHeader',
   components: {
     EditPassword,
-    Sidebar
+    Sidebar,
+    IBreadcrumb
   },
   data: () => ({
     // 导航可视状态

@@ -1,4 +1,4 @@
-const version = '3.1.0' // 系统版本
+const version = '3.2.0' // 系统版本
 const timeout = 10000 // 请求超时
 const baseAPI = {
   development: 'http://dev.xx.com/api',

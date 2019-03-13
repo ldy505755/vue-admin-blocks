@@ -9,7 +9,7 @@
 </template>
 <script>
 import {
-  editPwd
+  _editPwd
 } from '@/services/app'
 export default {
   name: 'EditPassword',
@@ -103,7 +103,7 @@ export default {
       this.$Loading.start()
       this.loading = true
       setTimeout(() => {
-        editPwd(this.editPassword).then(res => {
+        _editPwd(this.editPassword).then(res => {
           this.$Message.success(res.error.msg)
           this.$Loading.finish()
           this.loading = false

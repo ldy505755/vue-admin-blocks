@@ -84,9 +84,9 @@ const setAuthToken = AUTH_TOKEN => {
 }
 
 // 刷新重新配置默认参数
-const userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+const userInfo = sessionStorage.getItem('userInfo')
 if (userInfo) {
-  setAuthToken(userInfo['auth_token']) // 配置默认参数
+  setAuthToken(JSON.parse(userInfo)['auth_token']) // 配置默认参数
 }
 
 export default ax

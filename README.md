@@ -58,10 +58,10 @@ Step 1, 新建组件(测试) views/Test.vue
 </template>
 <script>
 import {
-  test
+  _test // 测试接口
 } from '@/services/test' // 接口文件
 export default {
-  name: 'Test',
+  name: 'Test', // 组件名称
   data: () => ({
     title: '',
     loading: false
@@ -71,7 +71,7 @@ export default {
     this.loading = true
     // 模拟异步请求
     setTimeout(() => {
-      test().then(res => {
+      _test().then(res => {
         this.$Loading.finish()
         this.loading = false
         this.title = res.data
@@ -98,26 +98,7 @@ export default {
 </style>
 ```
 
-Step 2, 添加路由(测试) router/routes.js
-
-```javascript
-export default [{
-  path: '/', // 路由地址
-  name: 'Layouts', // 组件名称
-  redirect: '/', // 路由重定向
-  component: () => import('@/layouts'), // 布局组件
-  children: [{
-    path: '/test', // 路由地址
-    name: 'Test', // 组件名称
-    component: () => import('@/views/Test'), // 测试组件（路由懒加载）
-    meta: {
-      keepAlive: true // 需要被缓存的组件
-    }
-  }]
-}]
-```
-
-Step 3, 添加临时菜单(测试) mock/app.js
+Step 2, 添加临时菜单(测试) mock/app.js
 
 ```javascript
 import Mock from 'mockjs'
@@ -126,8 +107,10 @@ export default () => {
   Mock.mock(/\/menu/, {
     data: [{
       path: '/test', // 路由地址
-      name: 'Test', // 组件名称
-      icon: 'md-document' // Icon图标
+      name: 'Test', // 菜单名称
+      icon: 'md-document', // 菜单 Icon 图标
+      compName: 'Test', // 组件名称
+      compPath: '/Test' // 组件地址（ 默认指向 src/views 路由组件目录
     }]
   })
 }
@@ -135,17 +118,18 @@ export default () => {
 
 \* **注意**
 
-> -   添加临时菜单需要重新登录才能显示新菜单
+> 1.  添加临时菜单需要重新登录才能更新新菜单
+> 2.  因为路由是通过菜单动态生成，所以无需再为项目配置路由
 
-Step 4, 新建接口管理文件 services/test.js
+Step 3, 新建接口管理文件 services/test.js
 
 ```javascript
 import ax from '@/utils/axios'
 
-export const test = () => ax.get('/test') // 测试接口
+export const _test = () => ax.get('/test') // 测试接口
 ```
 
-Step 5, 新建数据模拟文件 mock/test.js
+Step 4, 新建数据模拟文件 mock/test.js
 
 ```javascript
 import Mock from 'mockjs'
@@ -157,7 +141,7 @@ export default () => {
 }
 ```
 
-Step 6, 使用数据模拟文件 mock/index.js
+Step 5, 使用数据模拟文件 mock/index.js
 
 ```javascript
 import test from './test'

@@ -32,7 +32,7 @@
 import config from '@/config'
 import ax from '@/utils/axios'
 import {
-  login
+  _login
 } from '@/services/app'
 import IConfig from '@/layouts/partials/Config'
 import IError from '@/layouts/partials/Error'
@@ -101,6 +101,9 @@ export default {
         }
         this.version = env === 'development' ? `${version} Develop` : `${version} Test`
     }
+
+    // 更新页面 title 元素内容
+    this.$store.commit('TITLE', 'Login')
   },
   methods: {
     // 用户登录
@@ -116,13 +119,11 @@ export default {
       this.$store.commit('LOADING', true)
       // 模拟异步请求
       setTimeout(() => {
-        login(this.login).then(res => {
+        _login(this.login).then(res => {
           this.$Loading.finish()
           this.$store.commit('LOADING', false)
           const userInfo = res.data
           if (userInfo) {
-            // 设置页面 title 元素内容
-            sessionStorage.setItem('title', document.title)
             // 获取用户信息
             this.$store.commit('USER_INFO', userInfo)
             // 获取菜单列表

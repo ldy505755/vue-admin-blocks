@@ -16,7 +16,6 @@ import config from '@/config'
 export default {
   name: 'IBreadcrumb',
   data: () => ({
-    title: '',
     dashboard: '',
     breadcrumb: []
   }),
@@ -61,20 +60,17 @@ export default {
       this.dashboard = menu[0]
       this.breadcrumb = breadcrumb
 
-      // 修改页面 title 元素内容
-      if (!this.title) {
-        this.title = document.title
-      }
-      document.title = config.env === 'production' ? `${this.title} | ${curTitle}` : `${config.env} ) ${this.title} | ${curTitle}`
+      // 更新页面 title 元素内容
+      this.$store.commit('TITLE', curTitle)
     }
   }
 }
 </script>
 <style lang="postcss" scoped>
 #breadcrumb {
-  color: #999;
+  color: #ccc;
   font-size: 14px;
-  margin-bottom: 16px;
+  margin: 18px 16px;
   & .separator {
     margin: 0 8px;
   }

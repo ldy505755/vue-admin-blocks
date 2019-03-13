@@ -10,6 +10,40 @@ function padding(s, len) {
 }
 
 export default {
+  // 获取动态路由
+  getRoutes: data => {
+    // 菜单解析
+    const menus = []
+    for (const menu of data) {
+      if (menu.children) {
+        for (const child of menu.children) {
+          menus.push(child)
+        }
+      } else {
+        menus.push(menu)
+      }
+    }
+    // 路由解析
+    const routes = [{
+      path: '/',
+      name: 'Layouts',
+      redirect: '/',
+      component: () => import('@/layouts'),
+      children: []
+    }]
+    for (const route of menus) {
+      routes[0]['children'].push({
+        path: route.path,
+        name: route.compName,
+        component: () => import(`@/views${route.compPath}`),
+        meta: {
+          keepAlive: true
+        }
+      })
+    }
+    return routes
+  },
+  // 日期格式解析
   formatDate: {
     format: function(date, pattern) {
       pattern = pattern || DEFAULT_PATTERN

@@ -1,19 +1,26 @@
 import qs from 'qs'
+import config from '@/config'
 import router from '@/router'
 
 const state = {
+  title: document.title, // 页面 title 元素内容
   loading: false, // 加载状态
   userInfo: JSON.parse(sessionStorage.getItem('userInfo')) || '', // 用户信息
   resError: '' // 错误数据
 }
 
 const getters = {
-  getLoading: state => state.loading,
+  // getTitle: state => state.title,
+  // getLoading: state => state.loading,
   getUserInfo: state => state.userInfo,
   getResError: state => state.resError
 }
 
 const mutations = {
+  // 更新页面 title 元素内容
+  TITLE: (state, data) => {
+    document.title = config.env === 'production' ? `${state.title} | ${data}` : `${config.env} ) ${state.title} | ${data}`
+  },
   // 更新加载状态
   LOADING: (state, data) => {
     state.loading = data

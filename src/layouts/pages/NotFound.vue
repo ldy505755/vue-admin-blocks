@@ -35,6 +35,10 @@ export default {
       suffix: ''
     }
   }),
+  mounted() {
+    // 更新页面 title 元素内容
+    this.$store.commit('TITLE', '404')
+  },
   methods: {
     onReady(instance, CountUp) {
       const that = this
