@@ -1,25 +1,23 @@
 <template>
 <div id="header">
   <Row>
-    <Col :xs="0" :sm="0" :md="6" :lg="4">
+    <Col :xs="0" :sm="0" :md="14" :lg="14" :xl="14">
     <div class="logo-info">
       <img class="logo" src="@/assets/logo.png" alt="logo">
       <p class="name">企业级中后台集成方案 <br> <span class="sub">基于 Vue.js 的开源集成方案</span></p>
     </div>
     <!-- .logo-info -->
+    <IBreadcrumb />
+    <!-- #IBreadcrumb -->
     </Col>
-    <Col :xs="4" :sm="2" :md="0" :lg="0">
+    <Col :xs="4" :sm="2" :md="0" :lg="0" :xl="0">
     <Poptip class="navigation" placement="right-start" v-model="visible">
       <Icon class="nav-icon" type="md-menu" size="32" />
       <Sidebar slot="content" @on-click="handleClose" />
     </Poptip>
     <!-- .navigation -->
     </Col>
-    <Col :xs="10" :sm="11" :md="9" :lg="10">
-    <IBreadcrumb />
-    <!-- #IBreadcrumb -->
-    </Col>
-    <Col :xs="10" :sm="11" :md="9" :lg="10">
+    <Col :xs="20" :sm="22" :md="10" :lg="10" :xl="10">
     <div class="login-info">
       <Dropdown placement="bottom-end" @on-click="handleDropdown">
         <strong class="user">
@@ -104,6 +102,7 @@ export default {
 #header {
   background-color: #1f2d3d;
   color: #fff;
+  min-height: 60px;
   & #sidebar {
     height: auto;
     width: 240px;
@@ -116,6 +115,10 @@ export default {
   }
   & .ivu-poptip-body {
     padding: 8px 0;
+  }
+  & .logo-info {
+    float: left;
+    width: 270px;
   }
   & .logo {
     float: left;
@@ -137,7 +140,7 @@ export default {
     margin-top: 14px;
   }
   & .login-info {
-    margin: 18px 16px;
+    margin: 18px 16px 0 0;
     text-align: right;
     & .user {
       color: #fff;

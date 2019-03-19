@@ -1,13 +1,15 @@
 <template>
 <Card class="i-content" :bordered="false" dis-hover>
+  <slot name="header" />
+  <!-- header -->
   <div class="i-search-bar">
-    <slot name="search"> </slot>
+    <slot name="search" />
     <!-- search -->
-    <slot name="extra"> </slot>
+    <slot name="extra" />
     <!-- extra -->
   </div>
   <!-- .search-bar -->
-  <slot> </slot>
+  <slot />
 </Card>
 </template>
 <script>
@@ -19,8 +21,17 @@ export default {
 }
 </script>
 <style lang="postcss">
-.i-search-bar {
-  display: flex;
-  justify-content: space-between;
+.i-content {
+  min-height: calc(100vh - 174px);
+  & .i-search-bar {
+    display: flex;
+    justify-content: space-between;
+  }
+  & .i-content {
+    min-height: auto;
+    & .ivu-card-body {
+      padding: 0;
+    }
+  }
 }
 </style>

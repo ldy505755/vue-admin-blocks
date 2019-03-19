@@ -1,9 +1,9 @@
 <template>
 <IForm class="i-search" inline :model="model" :elem="elem" :loading="loading" :btn-loading="btnLoading" :label-width="labelWidth" @on-submit="handleSearch" @on-reset="handleSearch" :btn-label-width="4" reset submit-text="Search" ok-icon="md-search"
   btn-icon="md-refresh">
-  <slot slot="head" name="head"> </slot>
-  <slot> </slot>
-  <slot slot="button" name="button"> </slot>
+  <slot slot="head" name="head" />
+  <slot />
+  <slot slot="button" name="button" />
 </IForm>
 <!-- IForm -->
 </template>

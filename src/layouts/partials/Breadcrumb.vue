@@ -69,8 +69,9 @@ export default {
 <style lang="postcss" scoped>
 #breadcrumb {
   color: #ccc;
-  font-size: 14px;
-  margin: 18px 16px;
+  font-size: 12px;
+  line-height: 24px;
+  margin-top: 18px;
   & .separator {
     margin: 0 8px;
   }

@@ -3,11 +3,11 @@
   <IHeader />
   <!-- IHeader -->
   <Row>
-    <Col :xs="0" :sm="0" :md="4" :lg="3">
+    <Col :xs="0" :sm="0" :md="5" :lg="4" :xl="3">
     <ISidebar />
     <!-- ISidebar -->
     </Col>
-    <Col :xs="24" :sm="24" :md="20" :lg="21">
+    <Col :xs="24" :sm="24" :md="19" :lg="20" :xl="21">
     <ITabs />
     <!-- ITabs -->
     <div id="container">

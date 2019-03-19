@@ -1,7 +1,7 @@
 <template>
 <div class="i-form">
   <Form ref="form" :model="model" :rules="rules" :inline="inline" :label-width="labelWidth" :label-position="labelPosition" :style="formWidth" @keyup.enter.native="handleSubmit('form')">
-    <slot name="head"> </slot>
+    <slot name="head" />
     <FormItem v-for="(item, index) in elem" :key="index" :prop="item.prop" :label="item.label" :label-width="item.labelWidth" :style="item.width">
       <Input v-if="!item.element" :type="item.type" v-model="model[item.prop]" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :readonly="item.readonly" :icon="item.icon" :prefix="item.prefix" :suffix="item.suffix"
         :number="item.number" :rows="item.rows" :autosize="item.autosize" :style="item.elemWidth" />
@@ -27,12 +27,12 @@
       </CheckboxGroup>
       <!-- 多选框 -->
     </FormItem>
-    <slot> </slot>
+    <slot />
     <FormItem :label-width="btnLabelWidth">
       <Button :type="okType" :icon="okIcon" :long="btnLong" :loading="btnLoading" @click="handleSubmit('form')">{{submitText}}</Button>
       <Button v-if="reset" :type="btnType" :icon="btnIcon" :long="btnLong" @click="handleReset('form')" class="button">{{resetText}}</Button>
       <Button v-if="button" :type="btnType" :icon="btnIcon" :long="btnLong" @click="handleClick('form')" class="button">{{buttonText}}</Button>
-      <slot name="button"> </slot>
+      <slot name="button" />
     </FormItem>
   </Form>
   <Spin v-if="loading" size="large" fix />
