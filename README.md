@@ -47,7 +47,7 @@
 
 ### 开发流程
 
-**Step 1,** 新建路由组件(测试) views/Test.vue
+**Step 1,** 新建路由组件（测试）views/Test.vue
 
 ```html
 <template>
@@ -98,7 +98,7 @@ export default {
 </style>
 ```
 
-**Step 2,** 添加临时菜单(测试) mock/app.js
+**Step 2,** 添加临时菜单（测试）mock/app.js
 
 ```javascript
 import Mock from 'mockjs'
@@ -121,7 +121,7 @@ export default () => {
 > 1.  添加临时菜单需要重新登录才能更新新菜单
 > 2.  因为路由是通过菜单动态生成，所以无需再为项目配置路由
 
-**Step 3,** 新建接口管理文件 services/test.js
+**Step 3,** 新建接口管理文件（测试） services/test.js
 
 ```javascript
 import ax from '@/utils/axios'
@@ -134,7 +134,7 @@ export const _test = () => ax.get('/test') // 测试接口
 > -   如果后端提供正式接口，那么无须再模拟假数据，直接跳过 Step 4 和 Step 5
 > -   如需使用 vuex 管理状态, 请阅读 src/layouts/partials/Sidebar.vue 组件和 src/store 目录源码
 
-**Step 4,** 新建数据模拟文件 mock/test.js
+**Step 4,** 新建数据模拟文件（测试） mock/test.js
 
 ```javascript
 import Mock from 'mockjs'
@@ -146,7 +146,7 @@ export default () => {
 }
 ```
 
-**Step 5,** 使用数据模拟文件 mock/index.js
+**Step 5,** 使用数据模拟文件（测试） mock/index.js
 
 ```javascript
 import test from './test'
