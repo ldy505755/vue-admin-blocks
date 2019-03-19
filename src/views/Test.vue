@@ -1,6 +1,6 @@
 <template>
 <Content id="test">
-  <Spin v-if="loading" size="large" fix></Spin>
+  <Spin v-if="loading" size="large" fix />
   <h2>This is a {{ title }}</h2>
 </Content>
 </template>
