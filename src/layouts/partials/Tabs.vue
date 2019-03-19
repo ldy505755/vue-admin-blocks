@@ -1,12 +1,12 @@
 <template>
 <div id="tabs">
   <Tabs type="card" :value="$route.path" @on-click="handleTabClick" @on-tab-remove="handleTabRemove">
-    <TabPane v-if="menu.length" :key="menu[0]['path']" :name="menu[0]['path']" :label="menu[0]['name']"></TabPane>
-    <TabPane v-for="item in tabs" :key="item['path']" :name="item['path']" :label="item['name']" closable></TabPane>
+    <TabPane v-if="menu.length" :key="menu[0]['path']" :name="menu[0]['path']" :label="menu[0]['name']" />
+    <TabPane v-for="item in tabs" :key="item['path']" :name="item['path']" :label="item['name']" closable />
   </Tabs>
   <!-- Tabs -->
   <Dropdown v-if="menu.length" class="dropdown" placement="bottom-end" @on-click="handleTabRemove">
-    <Icon type="md-menu" size="16" style="cursor: pointer;"></Icon>
+    <Icon type="md-menu" size="16" style="cursor: pointer;" />
     <DropdownMenu slot="list">
       <DropdownItem v-for="item in dropdown" :key="item.name" :name="item.name">
         <Icon :type="item.icon" size="16" style="margin-top: -2px;" /> {{ item.label }}

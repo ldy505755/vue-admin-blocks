@@ -1,6 +1,6 @@
 <template>
 <div class="i-table">
-  <Table ref="table" :border="border" :stripe="stripe" :row-class-name="rowClassName" :loading="loading" :columns="columns" :data="data" @on-selection-change="handleSelectionChange" />
+  <Table ref="table" :stripe="stripe" :border="border" :height="height" :row-class-name="rowClassName" :loading="loading" :columns="columns" :data="data" @on-selection-change="handleSelectionChange" />
   <!-- Table -->
   <slot />
   <Page v-if="total > 10" class="page" show-elevator show-total show-sizer placement="top" :total="total" :current="current" :page-size="pageSize" @on-change="handlePageChange" @on-page-size-change="handlePageSizeChange" />
@@ -11,8 +11,9 @@
 export default {
   name: 'ITable',
   props: {
-    border: Boolean,
     stripe: Boolean,
+    border: Boolean,
+    height: String,
     rowClassName: Function,
     loading: Boolean,
     columns: Array,

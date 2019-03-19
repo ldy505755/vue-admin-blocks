@@ -65,7 +65,7 @@ export default {
   /* fade-transform */
   & .fade-transform-enter-active,
   & .fade-transform-leave-active {
-    transition: all .5s;
+    transition: all .3s;
   }
 
   & .fade-transform-enter {
