@@ -61,7 +61,7 @@ export default () => {
       children: [{
         path: '/manage/users',
         name: 'Users',
-        icon: 'md-person',
+        icon: 'md-people',
         compName: 'Users',
         compPath: '/manage/users'
       }]
