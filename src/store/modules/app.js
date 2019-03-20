@@ -1,6 +1,5 @@
 import qs from 'qs'
 import config from '@/config'
-import router from '@/router'
 
 const state = {
   title: document.title, // 页面 title 元素内容
@@ -27,7 +26,6 @@ const mutations = {
   },
   // 更新用户信息
   USER_INFO: (state, data) => {
-    router.push('/') // 路由跳转首页
     state.userInfo = data
     sessionStorage.setItem('userInfo', JSON.stringify(data))
   },
