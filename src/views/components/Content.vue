@@ -14,11 +14,9 @@
 </template>
 <script>
 export default {
-  name: 'Content',
-  data: () => ({
-
-  })
-}
+  name: "Content",
+  data: () => ({})
+};
 </script>
 <style lang="postcss">
 .i-content {

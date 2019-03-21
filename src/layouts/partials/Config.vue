@@ -35,74 +35,68 @@
 </div>
 </template>
 <script>
-import config from '@/config'
+import config from "@/config";
 export default {
-  name: 'IConfig',
+  name: "IConfig",
   data: () => ({
     // 表单数据对象(接口URL)
     config: {
-      baseURL: '',
-      newBaseAPI: '',
-      env: ''
+      baseURL: "",
+      newBaseAPI: "",
+      env: ""
     },
-    env: ['development', 'test', 'release', 'production'],
+    env: ["development", "test", "release", "production"],
     name: {
-      development: 'Development',
-      test: 'Test',
-      release: 'Release',
-      production: 'Production'
+      development: "Development",
+      test: "Test",
+      release: "Release",
+      production: "Production"
     }
   }),
   mounted() {
-    const {
-      baseAPI,
-      baseURL,
-      env
-    } = config
-    if (env === 'development' || env === 'test') {
+    const { baseAPI, baseURL, env } = config;
+    if (env === "development" || env === "test") {
       this.config = {
         baseAPI,
         baseURL,
-        newBaseAPI: localStorage.getItem('newBaseAPI') || '',
-        env: localStorage.getItem('env') || env
-      }
+        newBaseAPI: localStorage.getItem("newBaseAPI") || "",
+        env: localStorage.getItem("env") || env
+      };
     }
   },
   methods: {
     handleChange(env) {
-      const {
-        baseAPI
-      } = this.config
+      const { baseAPI } = this.config;
       this.$Modal.confirm({
-        title: 'Setting',
+        title: "Setting",
         content: `Are you sure switch to ${this.name[env]} environment?`,
-        okText: 'OK',
-        cancelText: 'Cancel',
+        okText: "OK",
+        cancelText: "Cancel",
         onOk: () => {
-          this.$Message.success('Save success!')
-          this.$parent.settings.visible = false
-          this.config.env = env
-          this.config.newBaseAPI = baseAPI[env]
-          localStorage.setItem('env', env)
-          localStorage.setItem('newBaseAPI', baseAPI[env])
+          this.$Message.success("Save success!");
+          this.$parent.settings.visible = false;
+          this.config.env = env;
+          this.config.newBaseAPI = baseAPI[env];
+          localStorage.setItem("env", env);
+          localStorage.setItem("newBaseAPI", baseAPI[env]);
         }
-      })
+      });
     },
     handleSave() {
-      this.$Message.success('Save success!')
-      this.$parent.settings.visible = false
-      localStorage.setItem('newBaseAPI', this.config.newBaseAPI)
+      this.$Message.success("Save success!");
+      this.$parent.settings.visible = false;
+      localStorage.setItem("newBaseAPI", this.config.newBaseAPI);
     },
     handleReset() {
-      this.$refs['config'].resetFields()
-      this.$Message.success('Reset Success!')
-      this.$parent.settings.visible = false
-      this.config.newBaseAPI = ''
-      localStorage.removeItem('env')
-      localStorage.removeItem('newBaseAPI')
+      this.$refs["config"].resetFields();
+      this.$Message.success("Reset Success!");
+      this.$parent.settings.visible = false;
+      this.config.newBaseAPI = "";
+      localStorage.removeItem("env");
+      localStorage.removeItem("newBaseAPI");
     }
   }
-}
+};
 </script>
 <style lang="postcss" scoped>
 #config {

@@ -17,69 +17,70 @@
 </div>
 </template>
 <script>
-import {
-  mapGetters
-} from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'ITabs',
+  name: "ITabs",
   data: () => ({
     // 下拉菜单元素数组
-    dropdown: [{
-      label: 'Close Other Tabs',
-      name: 'closeOtherTabs',
-      icon: 'md-close'
-    }, {
-      label: 'Close All Tabs',
-      name: 'closeAllTabs',
-      icon: 'md-close-circle'
-    }]
+    dropdown: [
+      {
+        label: "Close Other Tabs",
+        name: "closeOtherTabs",
+        icon: "md-close"
+      },
+      {
+        label: "Close All Tabs",
+        name: "closeAllTabs",
+        icon: "md-close-circle"
+      }
+    ]
   }),
   computed: {
     ...mapGetters({
-      menu: 'getMenu',
-      tabs: 'getTabs'
+      menu: "getMenu",
+      tabs: "getTabs"
     })
   },
   watch: {
     // 侦听路由变化
     $route() {
       // 创建标签页
-      this.$store.commit('NEW_TABS', this.$route.path)
+      this.$store.commit("NEW_TABS", this.$route.path);
     }
   },
   methods: {
     // 切换标签页
     handleTabClick(name) {
-      this.$store.commit('MENU_SELECT', name) // 选择菜单
+      this.$store.commit("MENU_SELECT", name); // 选择菜单
     },
     // 关闭标签页
     handleTabRemove(name) {
-      let path = this.$route.path // 当前路径
+      let path = this.$route.path; // 当前路径
       // 标签页管理菜单
-      if (name.indexOf('/')) {
-        path = name === 'closeAllTabs' ? '/' : path
-        name = [name, path]
+      if (name.indexOf("/")) {
+        path = name === "closeAllTabs" ? "/" : path;
+        name = [name, path];
       }
-      let nextPath // 相邻路径
+      let nextPath; // 相邻路径
       // 关闭当前标签页
       if (path === name) {
-        let tabs = this.tabs // 标签页对象
+        let tabs = this.tabs; // 标签页对象
         for (var i = 0; i < tabs.length; i++) {
-          if (tabs[i]['path'] === name) {
+          if (tabs[i]["path"] === name) {
             // 获取当前相邻标签页
-            var nextTab = tabs[i + 1] || tabs[i - 1]
-            nextPath = nextTab ? nextTab['path'] : '/'
+            var nextTab = tabs[i + 1] || tabs[i - 1];
+            nextPath = nextTab ? nextTab["path"] : "/";
           }
         }
       }
-      if (path === name || path === '/') {
-        this.handleTabClick(nextPath || path) // 切换标签页
+      if (path === name || path === "/") {
+        this.handleTabClick(nextPath || path); // 切换标签页
       }
-      this.$store.commit('CLOSE_TABS', name) // 关闭标签页
-      this.$route.meta.keepAlive = false // 设置非缓存组件
+      this.$store.commit("CLOSE_TABS", name); // 关闭标签页
+      this.$route.meta.keepAlive = false; // 设置非缓存组件
     }
   }
-}
+};
 </script>
 <style lang="postcss">
 #tabs {
@@ -87,7 +88,7 @@ export default {
     margin-bottom: 0;
     padding: 8px 32px 0 16px;
   }
-  & .ivu-tabs.ivu-tabs-card>.ivu-tabs-bar .ivu-tabs-tab-active {
+  & .ivu-tabs.ivu-tabs-card > .ivu-tabs-bar .ivu-tabs-tab-active {
     background-color: #f0f0f0;
   }
   & .dropdown {

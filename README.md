@@ -1,7 +1,7 @@
 **Demo:** <http://vab.cssue.com/>
 
-> -   Username: admin
-> -   Password: wasd@007
+> - Username: admin
+> - Password: wasd@007
 
 ## 特性
 
@@ -101,19 +101,21 @@ export default {
 **Step 2,** 添加临时菜单（测试）mock/app.js
 
 ```javascript
-import Mock from 'mockjs'
+import Mock from "mockjs";
 
 export default () => {
   Mock.mock(/\/menu/, {
-    data: [{
-      path: '/test', // 路由地址
-      name: 'Test', // 菜单名称
-      icon: 'md-document', // 菜单 Icon 图标
-      compName: 'Test', // 组件名称
-      compPath: '/Test' // 组件地址（ 默认指向 src/views 路由组件目录
-    }]
-  })
-}
+    data: [
+      {
+        path: "/test", // 路由地址
+        name: "Test", // 菜单名称
+        icon: "md-document", // 菜单 Icon 图标
+        compName: "Test", // 组件名称
+        compPath: "/Test" // 组件地址（ 默认指向 src/views 路由组件目录
+      }
+    ]
+  });
+};
 ```
 
 \* **注意**
@@ -124,36 +126,36 @@ export default () => {
 **Step 3,** 新建接口管理文件（测试） services/test.js
 
 ```javascript
-import ax from '@/utils/axios'
+import ax from "@/utils/axios";
 
-export const _test = () => ax.get('/test') // 测试接口
+export const _test = () => ax.get("/test"); // 测试接口
 ```
 
 \* **提示**
 
-> -   如果后端提供正式接口，那么无须再模拟假数据，直接跳过 Step 4 和 Step 5
-> -   如需使用 vuex 管理状态, 请阅读 src/layouts/partials/Sidebar.vue 组件和 src/store 目录源码
+> - 如果后端提供正式接口，那么无须再模拟假数据，直接跳过 Step 4 和 Step 5
+> - 如需使用 vuex 管理状态, 请阅读 src/layouts/partials/Sidebar.vue 组件和 src/store 目录源码
 
 **Step 4,** 新建数据模拟文件（测试） mock/test.js
 
 ```javascript
-import Mock from 'mockjs'
+import Mock from "mockjs";
 
 export default () => {
   Mock.mock(/\/test/, () => ({
-    data: 'test page' // 测试数据
-  }))
-}
+    data: "test page" // 测试数据
+  }));
+};
 ```
 
 **Step 5,** 使用数据模拟文件（测试） mock/index.js
 
 ```javascript
-import test from './test'
+import test from "./test";
 
 export default () => {
-  test() // 测试
-}
+  test(); // 测试
+};
 ```
 
 ### 快速开始

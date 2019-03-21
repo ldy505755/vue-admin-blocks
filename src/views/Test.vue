@@ -5,32 +5,32 @@
 </Content>
 </template>
 <script>
-import {
-  _test
-} from '@/services/test'
+import { _test } from "@/services/test";
 export default {
-  name: 'Test',
+  name: "Test",
   data: () => ({
-    title: '',
+    title: "",
     loading: false
   }),
   mounted() {
-    this.$Loading.start()
-    this.loading = true
+    this.$Loading.start();
+    this.loading = true;
     // 模拟异步请求
     setTimeout(() => {
-      _test().then(res => {
-        this.$Loading.finish()
-        this.loading = false
-        this.title = res.data
-      }).catch(err => {
-        this.$Loading.error()
-        this.loading = false
-        console.error(err)
-      })
-    }, 500)
+      _test()
+        .then(res => {
+          this.$Loading.finish();
+          this.loading = false;
+          this.title = res.data;
+        })
+        .catch(err => {
+          this.$Loading.error();
+          this.loading = false;
+          console.error(err);
+        });
+    }, 500);
   }
-}
+};
 </script>
 <style lang="postcss" scoped>
 /* 样式使用 cssnext 预处理 */

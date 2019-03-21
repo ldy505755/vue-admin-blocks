@@ -33,14 +33,14 @@
 </div>
 </template>
 <script>
-import IHeader from '@/layouts/partials/Header'
-import ISidebar from '@/layouts/partials/Sidebar'
-import ITabs from '@/layouts/partials/Tabs'
+import IHeader from "@/layouts/partials/Header";
+import ISidebar from "@/layouts/partials/Sidebar";
+import ITabs from "@/layouts/partials/Tabs";
 // import IBreadcrumb from '@/layouts/partials/Breadcrumb'
-import IFooter from '@/layouts/partials/Footer'
-import IError from '@/layouts/partials/Error'
+import IFooter from "@/layouts/partials/Footer";
+import IError from "@/layouts/partials/Error";
 export default {
-  name: 'ILayout',
+  name: "ILayout",
   components: {
     IHeader,
     ISidebar,
@@ -49,7 +49,7 @@ export default {
     IFooter,
     IError
   }
-}
+};
 </script>
 <style lang="postcss">
 #container {
@@ -65,7 +65,7 @@ export default {
   /* fade-transform */
   & .fade-transform-enter-active,
   & .fade-transform-leave-active {
-    transition: all .3s;
+    transition: all 0.3s;
   }
 
   & .fade-transform-enter {

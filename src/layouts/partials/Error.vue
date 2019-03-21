@@ -13,26 +13,24 @@
 </div>
 </template>
 <script>
-import {
-  mapGetters
-} from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'IError',
+  name: "IError",
   computed: {
     ...mapGetters({
-      resError: 'getResError'
+      resError: "getResError"
     })
   }
-}
+};
 </script>
 <style lang="postcss" scoped>
 #error {
-  bottom:0;
-  left:0;
-  position:absolute;
-  right:0;
-  top:0;
-  z-index:999;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 999;
   & .ivu-alert {
     border-style: none;
     margin-bottom: 0;

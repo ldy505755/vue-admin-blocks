@@ -1,2 +1,2 @@
-import HelloWorld from './HelloWorld'
-export default HelloWorld
+import HelloWorld from "./HelloWorld";
+export default HelloWorld;

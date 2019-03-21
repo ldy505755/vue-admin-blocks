@@ -40,7 +40,7 @@
 </template>
 <script>
 export default {
-  name: 'IForm',
+  name: "IForm",
   props: {
     elem: Array, // 表单元素数组
     model: Object, // 表单数据对象
@@ -49,15 +49,15 @@ export default {
     labelWidth: Number, // 表单域标签宽度
     labelPosition: {
       validator(value) {
-        const validList = ['left', 'right', 'top']
+        const validList = ["left", "right", "top"];
         for (let i = 0; i < validList.length; i++) {
           if (value === validList[i]) {
-            return true
+            return true;
           }
         }
-        return false
+        return false;
       },
-      default: 'right'
+      default: "right"
     }, // 表单域标签位置
     inline: {
       type: Boolean,
@@ -78,19 +78,19 @@ export default {
     }, // 是否显示普通按钮
     submitText: {
       type: String,
-      default: 'Submit'
+      default: "Submit"
     }, // 提交按钮文字
     resetText: {
       type: String,
-      default: 'Reset'
+      default: "Reset"
     }, // 重置按钮文字
     buttonText: {
       type: String,
-      default: 'Button'
+      default: "Button"
     }, // 普通按钮文字
     okType: {
       type: String,
-      default: 'primary'
+      default: "primary"
     }, // 提交按钮类型
     btnType: String, // 普通按钮类型
     btnLong: Boolean, // 设置按钮的长度为 100%
@@ -104,28 +104,28 @@ export default {
   },
   computed: {
     formWidth() {
-      const style = {}
+      const style = {};
       if (this.width) {
-        style.maxWidth = `${this.width}px`
+        style.maxWidth = `${this.width}px`;
       }
-      return style
+      return style;
     }
   },
   mounted() {
     if (this.elem) {
-      const elem = this.elem
+      const elem = this.elem;
       for (var i = 0; i < elem.length; i++) {
-        const width = elem[i].width
-        const elemWidth = elem[i].elemWidth
+        const width = elem[i].width;
+        const elemWidth = elem[i].elemWidth;
         if (parseInt(width)) {
           elem[i].width = {
             width: `${width}px`
-          }
+          };
         }
         if (parseInt(elemWidth)) {
           elem[i].elemWidth = {
             width: `${elemWidth}px`
-          }
+          };
         }
       }
     }
@@ -133,35 +133,35 @@ export default {
   methods: {
     validateField(prop) {
       // 对部分表单字段进行校验的方法
-      this.$refs['form'].validateField(prop)
+      this.$refs["form"].validateField(prop);
     },
     handleSubmit(name) {
       if (this.elem) {
         // 对整个表单进行校验
         this.$refs[name].validate(valid => {
           if (valid) {
-            this.$emit('on-submit')
+            this.$emit("on-submit");
           }
-        })
+        });
       } else {
-        this.$emit('on-submit')
+        this.$emit("on-submit");
       }
     },
     handleReset() {
       // 将所有字段值重置为空并移除校验结果
-      this.$refs['form'].resetFields()
-      this.$emit('on-reset')
+      this.$refs["form"].resetFields();
+      this.$emit("on-reset");
     },
     handleClick() {
-      this.$emit('on-click')
+      this.$emit("on-click");
     },
     // 选中的 Option 变化时触发
     handleSelectChange(val) {
-      const name = val.split('-')
-      this.$emit(`on-${name[0]}`, name[1])
+      const name = val.split("-");
+      this.$emit(`on-${name[0]}`, name[1]);
     }
   }
-}
+};
 </script>
 <style lang="postcss" scoped>
 .i-form {

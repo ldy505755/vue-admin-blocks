@@ -12,59 +12,58 @@
 </div>
 </template>
 <script>
-import config from '@/config'
 export default {
-  name: 'IBreadcrumb',
+  name: "IBreadcrumb",
   data: () => ({
-    dashboard: '',
+    dashboard: "",
     breadcrumb: []
   }),
   watch: {
     // 侦听路由变化
     $route() {
-      this.handleBreadcrumb()
+      this.handleBreadcrumb();
     }
   },
   mounted() {
-    this.handleBreadcrumb()
+    this.handleBreadcrumb();
   },
   methods: {
     handleBreadcrumb() {
-      const menu = this.$store.state.menus.menu // 获取菜单(主菜单和子菜单)
+      const menu = this.$store.state.menus.menu; // 获取菜单(主菜单和子菜单)
       if (!menu) {
-        return false
+        return false;
       }
-      const thisPath = this.$route.path // 当前菜单路径
-      const mainPath = `/${thisPath.split('/')[1]}` // 主菜单路径
-      const curMenu = menu.filter(name => name['path'] === mainPath)[0] // 获取当前菜单(主菜单和子菜单)
-      const childMenu = curMenu['children'] // 获取当前菜单(子菜单)
-      const breadcrumb = []
-      let curTitle = curMenu['name']
+      const thisPath = this.$route.path; // 当前菜单路径
+      const mainPath = `/${thisPath.split("/")[1]}`; // 主菜单路径
+      const curMenu = menu.filter(name => name["path"] === mainPath)[0]; // 获取当前菜单(主菜单和子菜单)
+      const childMenu = curMenu["children"]; // 获取当前菜单(子菜单)
+      const breadcrumb = [];
+      let curTitle = curMenu["name"];
       breadcrumb.push({
-        name: curMenu['name'],
-        icon: curMenu['icon'],
-        path: curMenu['path']
-      })
+        name: curMenu["name"],
+        icon: curMenu["icon"],
+        path: curMenu["path"]
+      });
       if (childMenu) {
         for (const item of childMenu) {
-          if (item['path'] === thisPath) {
-            curTitle = item['name']
+          if (item["path"] === thisPath) {
+            curTitle = item["name"];
             breadcrumb.push({
-              name: item['name'],
-              icon: item['icon'],
-              path: item['path']
-            })
+              name: item["name"],
+              icon: item["icon"],
+              path: item["path"]
+            });
           }
         }
       }
-      this.dashboard = menu[0]
-      this.breadcrumb = breadcrumb
+      this.dashboard = menu[0];
+      this.breadcrumb = breadcrumb;
 
       // 更新页面 title 元素内容
-      this.$store.commit('TITLE', curTitle)
+      this.$store.commit("TITLE", curTitle);
     }
   }
-}
+};
 </script>
 <style lang="postcss" scoped>
 #breadcrumb {
@@ -85,7 +84,7 @@ export default {
   /* breadcrumb transition */
   & .breadcrumb-enter-active,
   & .breadcrumb-leave-active {
-    transition: all .5s;
+    transition: all 0.5s;
   }
 
   & .breadcrumb-enter,
@@ -95,7 +94,7 @@ export default {
   }
 
   & .breadcrumb-move {
-    transition: all .5s;
+    transition: all 0.5s;
   }
 
   & .breadcrumb-leave-active {

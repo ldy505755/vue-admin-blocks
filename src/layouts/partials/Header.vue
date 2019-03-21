@@ -39,11 +39,11 @@
 </div>
 </template>
 <script>
-import EditPassword from '@/layouts/pages/EditPassword'
-import Sidebar from '@/layouts/partials/Sidebar'
-import IBreadcrumb from '@/layouts/partials/Breadcrumb'
+import EditPassword from "@/layouts/pages/EditPassword";
+import Sidebar from "@/layouts/partials/Sidebar";
+import IBreadcrumb from "@/layouts/partials/Breadcrumb";
 export default {
-  name: 'IHeader',
+  name: "IHeader",
   components: {
     EditPassword,
     Sidebar,
@@ -53,50 +53,53 @@ export default {
     // 导航可视状态
     visible: false,
     // 用户名
-    userName: '',
+    userName: "",
     // 下拉菜单元素数组
-    dropdown: [{
-      label: 'Password',
-      name: 'editPassword',
-      icon: 'md-lock'
-    }, {
-      label: 'Sign out',
-      name: 'signout',
-      icon: 'md-log-out'
-    }]
+    dropdown: [
+      {
+        label: "Password",
+        name: "editPassword",
+        icon: "md-lock"
+      },
+      {
+        label: "Sign out",
+        name: "signout",
+        icon: "md-log-out"
+      }
+    ]
   }),
   mounted() {
     // 获取用户信息
-    const userInfo = this.$store.state.app.userInfo
-    this.userName = userInfo.real_name || 'Null'
+    const userInfo = this.$store.state.app.userInfo;
+    this.userName = userInfo.real_name || "Null";
   },
   methods: {
     // 关闭导航
     handleClose(state) {
-      this.visible = state
+      this.visible = state;
     },
     // 下拉菜单项
     handleDropdown(name) {
       switch (name) {
-        case 'editPassword':
+        case "editPassword":
           // 修改密码
-          this.$refs[name].showModal()
-          break
+          this.$refs[name].showModal();
+          break;
         default:
           // 退出系统
           this.$Modal.confirm({
-            title: 'Warning',
-            content: 'Do you confirm the exit system?',
-            okText: 'OK',
-            cancelText: 'Cancel',
+            title: "Warning",
+            content: "Do you confirm the exit system?",
+            okText: "OK",
+            cancelText: "Cancel",
             onOk: () => {
-              this.$router.push('/login')
+              this.$router.push("/login");
             }
-          })
+          });
       }
     }
   }
-}
+};
 </script>
 <style lang="postcss">
 #header {
@@ -107,7 +110,8 @@ export default {
     height: auto;
     width: 240px;
   }
-  & .ivu-poptip-popper[x-placement^=right] .ivu-poptip-arrow:after, & .ivu-poptip-popper[x-placement^=right] .ivu-poptip-arrow {
+  & .ivu-poptip-popper[x-placement^="right"] .ivu-poptip-arrow:after,
+  & .ivu-poptip-popper[x-placement^="right"] .ivu-poptip-arrow {
     border-right-color: #304156;
   }
   & .ivu-poptip-inner {

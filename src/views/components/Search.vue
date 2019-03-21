@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'Search',
+  name: "Search",
   props: {
     model: Object,
     elem: Array,
@@ -17,15 +17,13 @@ export default {
     btnLoading: Boolean,
     labelWidth: Number
   },
-  data: () => ({
-
-  }),
+  data: () => ({}),
   methods: {
     handleSearch() {
-      this.$emit('on-search', true)
+      this.$emit("on-search", true);
     }
   }
-}
+};
 </script>
 <style lang="postcss">
 .i-search .ivu-form-item {

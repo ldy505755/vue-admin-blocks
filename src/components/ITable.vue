@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'ITable',
+  name: "ITable",
   props: {
     stripe: Boolean,
     border: Boolean,
@@ -27,38 +27,38 @@ export default {
   methods: {
     // 将数据导出为 .csv 文件
     exportCsv(obj) {
-      this.$refs['table'].exportCsv(obj)
+      this.$refs["table"].exportCsv(obj);
     },
     // 在多选模式下有效, 点击全选时触发
     selectAll(status) {
-      this.$refs['table'].selectAll(status)
+      this.$refs["table"].selectAll(status);
     },
     // 在多选模式下有效, 只要选中项发生变化时就会触发
     handleSelectionChange(selection) {
-      this.$emit('on-selection-change', selection)
+      this.$emit("on-selection-change", selection);
     },
     // 获取当前分页
     handlePage(type) {
-      this.current = type ? 1 : this.current
+      this.current = type ? 1 : this.current;
       return {
         current: this.current,
         pageSize: this.pageSize
-      }
+      };
     },
     // 改变页码
     handlePageChange(page) {
-      this.current = page
-      this.$emit('on-page-change')
+      this.current = page;
+      this.$emit("on-page-change");
     },
     // 切换每页条数
     handlePageSizeChange(page) {
-      this.pageSize = page
+      this.pageSize = page;
       if (this.current === 1) {
-        this.$emit('on-page-change')
+        this.$emit("on-page-change");
       }
     }
   }
-}
+};
 </script>
 <style lang="postcss" scoped>
 .i-table .page {

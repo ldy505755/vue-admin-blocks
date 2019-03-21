@@ -15,9 +15,9 @@
 </div>
 </template>
 <script>
-import ICountUp from 'vue-countup-v2'
+import ICountUp from "vue-countup-v2";
 export default {
-  name: 'NotFound',
+  name: "NotFound",
   components: {
     ICountUp
   },
@@ -29,23 +29,23 @@ export default {
     options: {
       useEasing: true,
       useGrouping: true,
-      separator: ',',
-      decimal: '.',
-      prefix: '',
-      suffix: ''
+      separator: ",",
+      decimal: ".",
+      prefix: "",
+      suffix: ""
     }
   }),
   mounted() {
     // 更新页面 title 元素内容
-    this.$store.commit('TITLE', '404')
+    this.$store.commit("TITLE", "404");
   },
   methods: {
-    onReady(instance, CountUp) {
-      const that = this
-      instance.update(that.endVal)
+    onReady(instance) {
+      const that = this;
+      instance.update(that.endVal);
     }
   }
-}
+};
 </script>
 <style lang="postcss" scoped>
 #not-found {
@@ -54,12 +54,12 @@ export default {
   min-height: 100%;
   text-align: center;
   color: #fff;
-  background-color: #B396FF;
+  background-color: #b396ff;
   & .head {
     padding-top: 60px;
   }
   & .status-code {
-    color: #5066BF;
+    color: #5066bf;
     font-size: 150px;
   }
   & .icon {

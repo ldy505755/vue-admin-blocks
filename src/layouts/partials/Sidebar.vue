@@ -23,35 +23,35 @@
 import {
   // mapActions,
   mapGetters
-} from 'vuex'
+} from "vuex";
 export default {
-  name: 'ISidebar',
+  name: "ISidebar",
   computed: {
     ...mapGetters({
-      menu: 'getMenu',
-      menuActive: 'getMenuActive',
-      menuOpened: 'getMenuOpened'
+      menu: "getMenu",
+      menuActive: "getMenuActive",
+      menuOpened: "getMenuOpened"
     })
   },
   watch: {
     // 侦听路由变化
     $route() {
-      this.handleMenuSelect(this.$route.path)
+      this.handleMenuSelect(this.$route.path);
       // 手动更新展开的子目录
       this.$nextTick(function() {
-        this.$refs['navigation'].updateOpened()
-      })
+        this.$refs["navigation"].updateOpened();
+      });
     }
   },
   methods: {
     // ...mapActions(['handleMenuSelect'])
     handleMenuSelect(name) {
-      this.$emit('on-click', false) // 关闭导航
-      this.$store.commit('MENU_SELECT', name) // 选择菜单
-      this.$route.meta.keepAlive = true // 设置缓存组件
+      this.$emit("on-click", false); // 关闭导航
+      this.$store.commit("MENU_SELECT", name); // 选择菜单
+      this.$route.meta.keepAlive = true; // 设置缓存组件
     }
   }
-}
+};
 </script>
 <style lang="postcss">
 :root {
@@ -83,7 +83,8 @@ export default {
       background-color: var(--bgColor3) !important;
       color: var(--fColor);
     }
-    & .ivu-menu-item:hover, & .ivu-menu-submenu-title:hover {
+    & .ivu-menu-item:hover,
+    & .ivu-menu-submenu-title:hover {
       background-color: var(--bgColor2);
     }
   }

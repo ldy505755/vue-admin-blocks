@@ -13,11 +13,11 @@
 </template>
 <script>
 export default {
-  name: 'Dashboard',
+  name: "Dashboard",
   data: () => ({
-    msg: '企业级中后台集成方案'
+    msg: "企业级中后台集成方案"
   })
-}
+};
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="postcss" scoped>
