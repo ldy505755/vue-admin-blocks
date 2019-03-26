@@ -8,7 +8,7 @@
     </div>
     <!-- .logo-info -->
     <IBreadcrumb />
-    <!-- #IBreadcrumb -->
+    <!-- IBreadcrumb -->
     </Col>
     <Col :xs="4" :sm="2" :md="0" :lg="0" :xl="0">
     <Poptip class="navigation" placement="right-start" v-model="visible">

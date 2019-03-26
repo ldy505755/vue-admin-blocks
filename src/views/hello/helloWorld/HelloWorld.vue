@@ -29,7 +29,6 @@
     </ul>
   </Content>
 </template>
-
 <script>
 export default {
   name: "HelloWorld",
@@ -38,7 +37,6 @@ export default {
   }
 };
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {

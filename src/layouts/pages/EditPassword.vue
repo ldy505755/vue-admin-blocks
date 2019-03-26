@@ -1,8 +1,7 @@
 <template>
 <div id="edit-password">
   <Modal v-model="modal.visible" :title="modal.title" footer-hide>
-    <IForm :key="modal.visible" ref="editPassword" label-position="top" :elem="editPasswordElem" :model="editPassword" :rules="editPasswordRule" :btn-loading="loading" :width="320" @on-submit="handleSubmit" @on-click="modal.visible = false"
-      submit-text="Save password" button button-text="Cancel" />
+    <IForm :key="modal.visible" ref="editPassword" label-position="top" :elem="editPasswordElem" :model="editPassword" :rules="editPasswordRule" :btn-loading="loading" :width="320" @on-submit="handleSubmit" @on-click="modal.visible = false" submit-text="Save password" button button-text="Cancel" />
     <!-- IForm -->
   </Modal>
 </div>

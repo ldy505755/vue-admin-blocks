@@ -3,8 +3,7 @@
   <Form ref="form" :model="model" :rules="rules" :inline="inline" :label-width="labelWidth" :label-position="labelPosition" :style="formWidth" @keyup.enter.native="handleSubmit('form')">
     <slot name="head" />
     <FormItem v-for="(item, index) in elem" :key="index" :prop="item.prop" :label="item.label" :label-width="item.labelWidth" :style="item.width">
-      <Input v-if="!item.element" :type="item.type" v-model="model[item.prop]" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :readonly="item.readonly" :icon="item.icon" :prefix="item.prefix" :suffix="item.suffix"
-        :number="item.number" :rows="item.rows" :autosize="item.autosize" :style="item.elemWidth" />
+      <Input v-if="!item.element" :type="item.type" v-model="model[item.prop]" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :readonly="item.readonly" :icon="item.icon" :prefix="item.prefix" :suffix="item.suffix" :number="item.number" :rows="item.rows" :autosize="item.autosize" :style="item.elemWidth" />
       <!-- 输入框 -->
       <InputNumber v-if="item.element === 'number'" :max="item.max" :min="item.min" v-model="model[item.prop]" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :style="item.elemWidth" />
       <!-- 数字输入框 -->

@@ -12,8 +12,6 @@
     <!-- ITabs -->
     <div id="container">
       <div id="main">
-        <!-- <IBreadcrumb /> -->
-        <!-- #IBreadcrumb -->
         <transition name="fade-transform" mode="out-in">
           <keep-alive v-if="$route.meta.keepAlive">
             <router-view />
@@ -36,7 +34,6 @@
 import IHeader from "@/layouts/partials/Header";
 import ISidebar from "@/layouts/partials/Sidebar";
 import ITabs from "@/layouts/partials/Tabs";
-// import IBreadcrumb from '@/layouts/partials/Breadcrumb'
 import IFooter from "@/layouts/partials/Footer";
 import IError from "@/layouts/partials/Error";
 export default {
@@ -45,7 +42,6 @@ export default {
     IHeader,
     ISidebar,
     ITabs,
-    // IBreadcrumb,
     IFooter,
     IError
   }

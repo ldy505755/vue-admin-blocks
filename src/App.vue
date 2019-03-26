@@ -5,13 +5,11 @@
   </transition>
 </div>
 </template>
-
 <script>
 export default {
   name: "App"
 };
 </script>
-
 <style lang="postcss">
 #app {
   // 过渡动画
