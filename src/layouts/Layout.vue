@@ -12,12 +12,14 @@
     <!-- ITabs -->
     <div id="container">
       <div id="main">
-        <transition name="fade-transform" mode="out-in">
-          <keep-alive v-if="$route.meta.keepAlive">
-            <router-view />
+        <!-- {{ keepAlive }} -->
+        <!-- <pre>{{ routes }}</pre> -->
+        <!-- <transition name="fade-transform" mode="out-in"> -->
+          <keep-alive>
+            <router-view v-if="keepAlive" />
           </keep-alive>
-          <router-view v-else />
-        </transition>
+          <router-view v-if="!keepAlive" />
+        <!-- </transition> -->
       </div>
       <!-- #main -->
       <IFooter />
@@ -36,6 +38,8 @@ import ISidebar from "@/layouts/partials/Sidebar";
 import ITabs from "@/layouts/partials/Tabs";
 import IFooter from "@/layouts/partials/Footer";
 import IError from "@/layouts/partials/Error";
+import { mapGetters } from "vuex";
+import utils from "@/utils";
 export default {
   name: "ILayout",
   components: {
@@ -44,6 +48,50 @@ export default {
     ITabs,
     IFooter,
     IError
+  },
+  data: () => ({
+    routes: [],
+    keepAlive: true
+  }),
+  computed: {
+    ...mapGetters({
+      menu: "getMenu",
+      tabs: "getTabs"
+    })
+  },
+  watch: {
+    // 侦听路由变化
+    $route() {
+      for (const route of this.routes) {
+        if (route.path === this.$route.path) {
+          this.keepAlive = route.meta.keepAlive; // 设置路由组件缓存
+        }
+      }
+    },
+    // 侦听标签变化
+    tabs() {
+      this.handleKeepAlive();
+    }
+  },
+  mounted() {
+    this.routes = utils.getRoutes(this.menu)[0]["children"]; // 获取动态路由
+    this.handleKeepAlive();
+  },
+  methods: {
+    // 根据 tabs 的增减来判断路由组件是否进行缓存
+    handleKeepAlive() {
+      for (const route of this.routes) {
+        if (route.meta.keepAliveUse) {
+          route.meta.keepAlive = false;
+        }
+        for (const tab of this.tabs) {
+          if (route.path === tab.path) {
+            route.meta.keepAliveUse = true;
+            route.meta.keepAlive = true;
+          }
+        }
+      }
+    }
   }
 };
 </script>

@@ -13,7 +13,8 @@
     <Col :xs="4" :sm="2" :md="0" :lg="0" :xl="0">
     <Poptip class="navigation" placement="right-start" v-model="visible">
       <Icon class="nav-icon" type="md-menu" size="32" />
-      <Sidebar slot="content" @on-click="handleClose" />
+      <ISidebar slot="content" @on-click="handleClose" />
+      <!-- ISidebar -->
     </Poptip>
     <!-- .navigation -->
     </Col>
@@ -40,13 +41,13 @@
 </template>
 <script>
 import EditPassword from "@/layouts/pages/EditPassword";
-import Sidebar from "@/layouts/partials/Sidebar";
+import ISidebar from "@/layouts/partials/Sidebar";
 import IBreadcrumb from "@/layouts/partials/Breadcrumb";
 export default {
   name: "IHeader",
   components: {
     EditPassword,
-    Sidebar,
+    ISidebar,
     IBreadcrumb
   },
   data: () => ({

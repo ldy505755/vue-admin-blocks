@@ -39,7 +39,8 @@ export default {
         name: route.compName,
         component: () => import(`@/views${route.compPath}`),
         meta: {
-          keepAlive: true
+          keepAlive: true,
+          keepAliveUse: false
         }
       });
     }

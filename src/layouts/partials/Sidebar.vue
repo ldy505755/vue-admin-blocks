@@ -36,7 +36,8 @@ export default {
   watch: {
     // 侦听路由变化
     $route() {
-      this.handleMenuSelect(this.$route.path);
+      // 选择菜单
+      this.$store.commit("MENU_SELECT", this.$route.path);
       // 手动更新展开的子目录
       this.$nextTick(function() {
         this.$refs["navigation"].updateOpened();
@@ -46,9 +47,8 @@ export default {
   methods: {
     // ...mapActions(['handleMenuSelect'])
     handleMenuSelect(name) {
-      this.$emit("on-click", false); // 关闭导航
+      this.$emit("on-click", false); // 关闭导航菜单
       this.$store.commit("MENU_SELECT", name); // 选择菜单
-      this.$route.meta.keepAlive = true; // 设置缓存组件
     }
   }
 };
