@@ -13,7 +13,7 @@
     <Col :xs="4" :sm="2" :md="0" :lg="0" :xl="0">
     <Poptip class="navigation" placement="right-start" v-model="visible">
       <Icon class="nav-icon" type="md-menu" size="32" />
-      <ISidebar slot="content" @on-click="handleClose" />
+      <ISidebar ref="navigation" slot="content" @on-click="handleClose" />
       <!-- ISidebar -->
     </Poptip>
     <!-- .navigation -->
@@ -69,6 +69,15 @@ export default {
       }
     ]
   }),
+  watch: {
+    // 侦听路由变化
+    $route() {
+      // 手动更新展开的子目录
+      this.$nextTick(function() {
+        this.$refs["navigation"].updateOpened();
+      });
+    }
+  },
   mounted() {
     // 获取用户信息
     const userInfo = this.$store.state.app.userInfo;

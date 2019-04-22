@@ -19,6 +19,7 @@ if (menu.length) {
   // 获取动态路由
   const routes = utils.getRoutes(menu);
   // 添加动态路由
+  router.options.routes = routes;
   router.addRoutes(routes);
 }
 

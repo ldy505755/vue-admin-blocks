@@ -1,6 +1,6 @@
 <template>
 <div id="sidebar">
-  <Menu accordion ref="navigation" theme="dark" width="auto" :active-name="menuActive" :open-names="[menuOpened]" @on-select="handleMenuSelect">
+  <Menu accordion ref="menu" theme="dark" width="auto" :active-name="menuActive" :open-names="[menuOpened]" @on-select="handleMenuSelect">
     <template v-for="item in menu">
       <MenuItem v-if="!item.children" :key="item.path" :name="item.path">
       <Icon v-if="item.icon" :type="item.icon" />{{ item.name }}
@@ -33,18 +33,13 @@ export default {
       menuOpened: "getMenuOpened"
     })
   },
-  watch: {
-    // 侦听路由变化
-    $route() {
-      // 选择菜单
-      this.$store.commit("MENU_SELECT", this.$route.path);
-      // 手动更新展开的子目录
-      this.$nextTick(function() {
-        this.$refs["navigation"].updateOpened();
-      });
-    }
-  },
   methods: {
+    // 手动更新展开的子目录
+    updateOpened() {
+      this.$nextTick(function() {
+        this.$refs["menu"].updateOpened();
+      });
+    },
     // ...mapActions(['handleMenuSelect'])
     handleMenuSelect(name) {
       this.$emit("on-click", false); // 关闭导航菜单
