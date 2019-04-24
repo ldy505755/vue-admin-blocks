@@ -34,5 +34,8 @@ export default {
       color: #51b883;
     }
   }
+  & .logo {
+    border-radius: 50%;
+  }
 }
 </style>

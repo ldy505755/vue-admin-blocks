@@ -2,6 +2,10 @@
 <Content id="test">
   <Spin v-if="loading" size="large" fix />
   <h2>This is a {{ title }}</h2>
+  <div v-if="title">
+    <p><router-link :to="{name:'HelloWorld', params:{payload: 'params'}}"> Params 方式向 HelloWorld 组件传参 </router-link></p>
+    <p><router-link :to="{path:'/hello/hello-world', query:{payload: 'query'}}"> Query 方式向 HelloWorld 组件传参 </router-link></p>
+  </div>
 </Content>
 </template>
 <script>
@@ -36,11 +40,20 @@ export default {
 /* 样式使用 cssnext 预处理 */
 :root {
   --bdColor: #ccc;
+  --color: #42b983;
+  --size: 4px;
 }
 #test {
   & h2 {
-    border-left: 4px solid var(--bdColor);
-    padding-left: 12px;
+    margin-bottom: calc(var(--size) * 4);
+    padding-left: calc(var(--size) * 3);
+    border-left: var(--size) solid var(--bdColor);
+  }
+  & p {
+    margin: calc(var(--size) * 2) 0;
+  }
+  & a {
+    color: var(--color);
   }
 }
 </style>

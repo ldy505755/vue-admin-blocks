@@ -1,6 +1,9 @@
 <template>
   <Content>
     <h1>{{ msg }}</h1>
+    <h3 v-if="$route.params.payload" class="payload"> 接收 Test 组件 Params 方式的传参: {{ $route.params.payload }} </h3>
+    <h3 v-if="$route.query.payload" class="payload"> 接收 Test 组件 Query 方式的传参: {{ $route.query.payload }} </h3>
+    <br>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -33,14 +36,17 @@
 export default {
   name: "HelloWorld",
   props: {
-    msg: String
+    msg: {
+      type: String,
+      default: "Welcome to Your Vue.js App"
+    }
   }
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin-top: 16px;
 }
 ul {
   list-style-type: none;
@@ -52,5 +58,8 @@ li {
 }
 a {
   color: #42b983;
+}
+.payload {
+  color: #2d8cf0;
 }
 </style>

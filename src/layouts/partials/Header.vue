@@ -139,6 +139,7 @@ export default {
     height: 40px;
     margin: 10px 16px;
     width: 40px;
+    border-radius: 50%;
   }
   & .name {
     font-size: 18px;

@@ -35,7 +35,7 @@ const mutations = {
   // 选择菜单
   MENU_SELECT: (state, data) => {
     router.push(data); // 路由跳转
-    state.menuActive = data; // 选择菜单
+    state.menuActive = data.split("?")[0]; // 激活菜单
     state.menuOpened = `/${data.split("/")[1]}`; // 展开菜单
     sessionStorage.setItem("menuActive", data);
     sessionStorage.setItem("menuOpened", state.menuOpened);

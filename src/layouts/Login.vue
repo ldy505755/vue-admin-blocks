@@ -199,6 +199,7 @@ export default {
       height: 64px;
       margin-right: 10px;
       width: 64px;
+      border-radius: 50%;
     }
     & .name {
       bottom: 14px;
