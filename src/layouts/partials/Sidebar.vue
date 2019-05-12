@@ -36,9 +36,11 @@ export default {
   methods: {
     // 手动更新展开的子目录
     updateOpened() {
-      this.$nextTick(function() {
-        this.$refs["menu"].updateOpened();
-      });
+      if (this.$route.path !== "/") {
+        this.$nextTick(function() {
+          this.$refs["menu"].updateOpened();
+        });
+      }
     },
     // ...mapActions(['handleMenuSelect'])
     handleMenuSelect(name) {

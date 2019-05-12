@@ -20,7 +20,7 @@
     </Col>
     <Col :xs="20" :sm="22" :md="10" :lg="10" :xl="10">
     <div class="login-info">
-      <Dropdown placement="bottom-end" @on-click="handleDropdown">
+      <Dropdown placement="bottom-end" trigger="click" @on-click="handleDropdown">
         <strong class="user">
           <Avatar style="background-color: #1890ff" icon="md-person" size="small" />
           Hi, {{ userName }}

@@ -7,11 +7,11 @@
       <!-- 输入框 -->
       <InputNumber v-if="item.element === 'number'" :max="item.max" :min="item.min" v-model="model[item.prop]" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :style="item.elemWidth" />
       <!-- 数字输入框 -->
-      <Select v-if="item.element === 'select'" v-model="model[item.prop]" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :filterable="item.filterable" :multiple="item.multiple" :style="item.elemWidth" @on-change="handleSelectChange">
-        <Option v-for="(opt, index) in item.option" :key="index" :value="item.events ? `${item.events}-${opt.value}` : opt.value" :disabled="opt.disabled">{{ opt.label }}</Option>
+      <Select v-if="item.element === 'select'" v-model="model[item.prop]" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :filterable="item.filterable" :multiple="item.multiple" :style="item.elemWidth" @on-change="value => $emit(`on-${item.events}`, value)">
+        <Option v-for="(opt, index) in item.option" :key="index" :value="opt.value" :disabled="opt.disabled">{{ opt.label }}</Option>
       </Select>
       <!-- 选择器 -->
-      <Cascader v-if="item.element === 'cascader'" :data="item.data" v-model="model[item.prop]" :disabled="opt.disabled" :filterable="item.filterable" />
+      <Cascader v-if="item.element === 'cascader'" :data="item.data" :placeholder="item.placeholder" v-model="model[item.prop]" :disabled="opt.disabled" :filterable="item.filterable" />
       <!-- 级联选择 -->
       <DatePicker v-if="item.element === 'date'" :type="item.type" v-model="model[item.prop]" :options="item.options" :format="item.format" :placeholder="item.placeholder" :size="item.size" :disabled="item.disabled" :style="item.elemWidth" />
       <!-- 日期选择器 -->
@@ -28,7 +28,7 @@
     </FormItem>
     <slot />
     <FormItem :label-width="btnLabelWidth">
-      <Button :type="okType" :icon="okIcon" :long="btnLong" :loading="btnLoading" @click="handleSubmit('form')">{{submitText}}</Button>
+      <Button v-if="submit" :type="okType" :icon="okIcon" :long="btnLong" :loading="btnLoading" @click="handleSubmit('form')">{{submitText}}</Button>
       <Button v-if="reset" :type="btnType" :icon="btnIcon" :long="btnLong" @click="handleReset('form')" class="button">{{resetText}}</Button>
       <Button v-if="button" :type="btnType" :icon="btnIcon" :long="btnLong" @click="handleClick('form')" class="button">{{buttonText}}</Button>
       <slot name="button" />
@@ -67,6 +67,10 @@ export default {
       default: false
     }, // 表单加载状态
     btnLabelWidth: Number, // 表单域标签的宽度(按钮区)
+    submit: {
+      type: Boolean,
+      default: true
+    }, // 是否显示提交按钮
     reset: {
       type: Boolean,
       default: false
@@ -153,11 +157,6 @@ export default {
     },
     handleClick() {
       this.$emit("on-click");
-    },
-    // 选中的 Option 变化时触发
-    handleSelectChange(val) {
-      const name = val.split("-");
-      this.$emit(`on-${name[0]}`, name[1]);
     }
   }
 };
